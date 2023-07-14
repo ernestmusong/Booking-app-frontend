@@ -1,9 +1,61 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import '../styles/Home.css';
+import {
+  FaTwitter, FaFacebookF, FaVimeoV, FaPinterestP,
+} from 'react-icons/fa6';
+import { TfiGoogle } from 'react-icons/tfi';
+import logo from '../assets/Frame.png';
 
+const links = [
+  { path: '/', text: 'Classes' },
+  { path: '/reserve', text: 'Reserve a class', id: 'border' },
+  { path: '/my-reservations', text: 'My reservations' },
+  { path: '/add-cla', text: 'Add class' },
+  { path: '/delete', text: 'Delete class' },
+];
+const currentYear = new Date().getFullYear();
 const NavigationPanel = () => (
-  <nav>
-    This is for the the navigation panel
-  </nav>
+  <>
+    <div className="navigation-panel">
+      <nav className="navbar">
+        <div className="logo-container">
+          <img className="logo" src={logo} alt="logo" />
+        </div>
+        <ul>
+          {links.map((link) => (
+            <li key={link.text}>
+              <NavLink
+                to={link.path}
+                className={({ isActive }) => (isActive ? 'active' : 'normal')}
+                id={link.id}
+              >
+                {link.text}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <footer>
+        <div className="social-container">
+          <div className="icons">
+            <FaTwitter />
+            <FaFacebookF />
+            <TfiGoogle />
+            <FaVimeoV />
+            <FaPinterestP />
+          </div>
+          <p>
+            ©
+            {' '}
+            {currentYear}
+            {' '}
+            All rights reserved
+          </p>
+        </div>
+      </footer>
+    </div>
+  </>
 );
 
 export default NavigationPanel;
