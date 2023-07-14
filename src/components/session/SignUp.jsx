@@ -57,18 +57,18 @@ const Login = () => {
             type="text"
             className="form-control"
             id="password"
-            placeholder="Your Username"
+            placeholder="Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         <label htmlFor="confirm-password" className="form-label">
-          Password:
+          Confirm Password:
           <input
             type="text"
             className="form-control"
             id="confirm-password"
-            placeholder="Your Username"
+            placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
