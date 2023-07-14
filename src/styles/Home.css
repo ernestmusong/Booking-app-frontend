@@ -27,12 +27,12 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  align-items: center;
 }
 
 .logo-container {
   height: 50px;
   width: 50px;
-  margin-left: 1.75rem;
 }
 
 .logo {
