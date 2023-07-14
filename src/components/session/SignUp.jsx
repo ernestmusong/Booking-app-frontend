@@ -78,7 +78,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? 'signing in...' : 'Sign up'}
           </button>
-          <Link to="/" className="btn text-light btn-secondary">Log in</Link>
+          <Link to="/login" className="btn text-light btn-secondary">Log in</Link>
         </div>
       </form>
     </div>
