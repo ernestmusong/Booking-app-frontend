@@ -43,7 +43,7 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     log: (state, action) => {
-      console.log('whatever');
+      console.log('whatever', state, action.payload);
     },
   },
   extraReducers: (builder) => {

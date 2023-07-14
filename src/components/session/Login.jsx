@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/session/sessionSlice';
 
 const Login = () => {
+  const { loading } = useSelector((store) => store.session);
   const dispatch = useDispatch();
   const [name, setName] = useState();
   const [error, setError] = useState(null);
