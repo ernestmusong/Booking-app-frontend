@@ -3,6 +3,8 @@ import Home from 'components/Home';
 import Footer from 'components/Footer';
 import NavigationPanel from 'components/NavigationPanel';
 import MyReservations from 'components/MyReservations';
+import Login from 'components/session/Login';
+import SignUp from 'components/session/SignUp';
 
 const App = () => (
   <>
@@ -10,6 +12,8 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="reservations" element={<MyReservations />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
     </Routes>
     <Footer />
   </>
