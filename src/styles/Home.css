@@ -1,0 +1,96 @@
+
+:root {
+  --limeGreen: limegreen;
+  --mainWhite: #f0f0f0;
+  --secondaryBlack: #333;
+  --white: #fff;
+}
+
+.navigation-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  position: fixed;
+  border-right: 1px solid grey;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: var(--white);
+  width: 15%;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+}
+
+.logo-container {
+  height: 50px;
+  width: 50px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 100%;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.75rem;
+  width: 100%;
+  list-style-type: none;
+}
+
+nav > ul li {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+nav > ul a {
+  color: var(--secondaryBlack);
+  text-decoration: none;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-transform: uppercase;
+  height: auto;
+}
+
+nav > ul a.active {
+  background: var(--limeGreen);
+  color: var(--mainWhite);
+}
+
+footer {
+  width: 100%;
+}
+
+.social-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 1.75rem;
+}
+
+.social-container p {
+  font-size: 0.75rem;
+  color: var(--secondaryBlack);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}

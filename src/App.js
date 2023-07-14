@@ -1,6 +1,6 @@
+import './styles/App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from 'components/Home';
-import Footer from 'components/Footer';
 import NavigationPanel from 'components/NavigationPanel';
 import MyReservations from 'components/MyReservations';
 import Login from 'components/session/Login';
@@ -15,7 +15,6 @@ const App = () => (
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />
     </Routes>
-    <Footer />
   </>
 );
 export default App;
