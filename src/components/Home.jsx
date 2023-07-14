@@ -1,8 +1,11 @@
 import React from 'react';
+import NavigationPanel from './NavigationPanel';
 
 function Home() {
   return (
-    <h1>Home Component or main page</h1>
+    <>
+      <NavigationPanel />
+    </>
   );
 }
 
