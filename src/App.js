@@ -1,6 +1,7 @@
 import './styles/App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from 'components/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
 import MyReservations from 'components/MyReservations';
 

@@ -8,11 +8,11 @@ import { TfiGoogle } from 'react-icons/tfi';
 import logo from '../assets/Frame.png';
 
 const links = [
-  { path: '/', text: 'Classes' },
-  { path: '/reserve', text: 'Reserve a class', id: 'border' },
+  { path: '/', text: 'Cars' },
+  { path: '/reserve', text: 'Reserve a car', id: 'border' },
   { path: '/my-reservations', text: 'My reservations' },
-  { path: '/add-cla', text: 'Add class' },
-  { path: '/delete', text: 'Delete class' },
+  { path: '/add-car', text: 'Add car' },
+  { path: '/delete', text: 'Delete car' },
 ];
 const currentYear = new Date().getFullYear();
 const NavigationPanel = () => (

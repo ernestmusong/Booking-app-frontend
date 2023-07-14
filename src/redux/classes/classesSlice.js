@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://financialmodelingprep.com',
+  baseURL: 'https://course-api.com',
 });
 
 export const getClasses = createAsyncThunk(
   'classes/getClasses',
   async (name, thunkAPI) => {
     try {
-      const resp = await client.get('/api/v1/classes');
+      const resp = await client.get('/javascript-store-products');
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue('something went wrong');
