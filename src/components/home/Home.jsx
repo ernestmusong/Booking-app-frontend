@@ -1,10 +1,10 @@
 import React from 'react';
-import NavigationPanel from './NavigationPanel';
+import CarList from './CarList';
 
 function Home() {
   return (
     <>
-      <NavigationPanel />
+      <CarList />
     </>
   );
 }

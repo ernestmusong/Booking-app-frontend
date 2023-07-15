@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import classesReducer from './classes/classesSlice';
+import carsReducer from './cars/carsSlice';
 import sessionReducer from './session/sessionSlice';
 
 const store = configureStore({
   reducer: {
     session: sessionReducer,
-    classes: classesReducer,
+    cars: carsReducer,
   },
 });
 
