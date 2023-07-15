@@ -1,9 +1,8 @@
 import React from 'react';
+import '../../styles/session.css';
 
 const BackgroundAnimated = () => (
-  <div>
-    Animated background if we have time for user session page
-  </div>
+  <div className="background" />
 );
 
 export default BackgroundAnimated;
