@@ -121,7 +121,7 @@ footer {
   right: 0;
   position: absolute;
   height: 100%;
-  padding-bottom: 4rem;;
+  padding-bottom: 4rem;
   margin-left: 15%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -160,25 +160,26 @@ footer {
 
 .article-name-wrap,
 .article-socials {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .article-socials p {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .article-name-wrap {
-    border-bottom: 1px dotted grey;
+  border-bottom: 1px dotted grey;
 }
+
 .article-name-wrap h6 {
-    font-weight: bold;
-    color: black;
-    text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
 }
 
 .article-description {
-    text-align: center;
-    font-size: 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
 }
