@@ -5,6 +5,8 @@ import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
 import MyReservations from 'components/MyReservations';
 import CarList from 'components/home/CarList';
+import Login from 'components/session/Login';
+import SignUp from 'components/session/SignUp';
 
 const App = () => (
   <>
@@ -13,6 +15,8 @@ const App = () => (
       <Route path="/" element={<Home />} />
       <Route path="cars" element={<CarList />} />
       <Route path="reservations" element={<MyReservations />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
     </Routes>
   </>
 );
