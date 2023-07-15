@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getClasses } from 'redux/classes/classesSlice';
-import Class from './Class';
+import { getCars } from '../../redux/cars/carsSlice';
+import Car from './Car';
 import Title from './Tittle';
 
-function ClassList() {
+function CarList() {
   const dispatch = useDispatch();
-  const { classes, isLoading, error } = useSelector((store) => store.classes);
+  const { cars, isLoading, error } = useSelector((store) => store.cars);
 
   useEffect(() => {
-    dispatch(getClasses('CLASSES'));
+    dispatch(getCars('CARS'));
   }, [dispatch]);
 
   if (isLoading) {
@@ -26,7 +26,7 @@ function ClassList() {
       </div>
     );
   }
-  if (classes.length === 0) {
+  if (cars.length === 0) {
     return (
       <div className="empty list">
         <h1>Your cars list is currently empty!</h1>
@@ -38,11 +38,11 @@ function ClassList() {
       <div className="classes-wrapper">
         <Title title="all cars" subTitle="Please select a car" />
         <div className="classes mx-auto">
-          { classes.map((item) => <Class key={item.id} item={item} />)}
+          { cars.map((item) => <Car key={item.id} item={item} />)}
         </div>
       </div>
     </>
   );
 }
 
-export default ClassList;
+export default CarList;

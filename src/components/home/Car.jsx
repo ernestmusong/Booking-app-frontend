@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CiFacebook } from 'react-icons/ci';
 
-function Class({ item }) {
+function Car({ item }) {
   if (!item) {
     return null;
   }
@@ -39,8 +39,8 @@ function Class({ item }) {
   );
 }
 
-Class.propTypes = {
+Car.propTypes = {
   item: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default Class;
+export default Car;

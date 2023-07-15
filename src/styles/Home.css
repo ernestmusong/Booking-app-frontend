@@ -11,10 +11,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  /* top: 0; */
+  position: fixed;
+  top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   border-right: 1px solid grey;
   padding-top: 1rem;
   padding-bottom: 1rem;

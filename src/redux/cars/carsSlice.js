@@ -5,8 +5,8 @@ const client = axios.create({
   baseURL: 'https://course-api.com',
 });
 
-export const getClasses = createAsyncThunk(
-  'classes/getClasses',
+export const getCars = createAsyncThunk(
+  'cars/getCars',
   async (name, thunkAPI) => {
     try {
       const resp = await client.get('/javascript-store-products');
@@ -18,27 +18,27 @@ export const getClasses = createAsyncThunk(
 );
 
 const initialState = {
-  classes: [],
+  cars: [],
   isLoading: true,
   error: '',
 };
 
-export const classesSlice = createSlice({
-  name: 'classes',
+export const carsSlice = createSlice({
+  name: 'cars',
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(getClasses.pending, (state) => ({
+      .addCase(getCars.pending, (state) => ({
         ...state,
         isLoading: true,
       }))
-      .addCase(getClasses.fulfilled, (state, action) => ({
+      .addCase(getCars.fulfilled, (state, action) => ({
         ...state,
-        classes: action.payload || [],
+        cars: action.payload || [],
         isLoading: false,
       }))
 
-      .addCase(getClasses.rejected, (state) => ({
+      .addCase(getCars.rejected, (state) => ({
         ...state,
         isLoading: false,
         error: 'Something went wrong',
@@ -46,4 +46,4 @@ export const classesSlice = createSlice({
   },
 });
 
-export default classesSlice.reducer;
+export default carsSlice.reducer;
