@@ -1,0 +1,77 @@
+:root {
+  --limeGreen: limegreen;
+  --mainWhite: #f0f0f0;
+  --secondaryBlack: #333;
+  --white: #fff;
+}
+
+.details-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  right: 0;
+  position: absolute;
+  height: 100%;
+  padding-bottom: 4rem;
+  margin-left: 15%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 999;
+}
+
+
+.image-wrap {
+  width: 55%;
+  height: 80%;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 80%;
+  width: 30%;
+}
+
+.up {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.text-section h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #000;
+}
+
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  list-style-type: none;
+  width: 100%;
+  padding-left: 0;
+}
+
+.detail-list li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+}
+
+.detail-list li:nth-child(odd) {
+  background-color: #ddd;
+}
