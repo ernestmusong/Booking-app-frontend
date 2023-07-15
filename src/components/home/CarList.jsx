@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ProgressBar } from 'react-loader-spinner';
 import { getCars } from '../../redux/cars/carsSlice';
 import Car from './Car';
 import Title from './Tittle';
@@ -15,7 +16,15 @@ function CarList() {
   if (isLoading) {
     return (
       <div className="loading">
-        <h1>Loading...</h1>
+        <ProgressBar
+          height="100"
+          width="200"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass="progress-bar-wrapper"
+          borderColor="#F4442E"
+          barColor="limegreen"
+        />
       </div>
     );
   }
@@ -38,7 +47,7 @@ function CarList() {
       <div className="classes-wrapper">
         <Title title="all cars" subTitle="Please select a car" />
         <div className="classes mx-auto">
-          { cars.map((item) => <Car key={item.id} item={item} />)}
+          {cars.map((item) => <Car key={item.id} item={item} />)}
         </div>
       </div>
     </>

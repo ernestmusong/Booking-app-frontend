@@ -41,11 +41,6 @@ const initialState = {
 const sessionSlice = createSlice({
   name: 'session',
   initialState,
-  reducers: {
-    log: (state, action) => {
-      console.log('whatever', state, action.payload);
-    },
-  },
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => ({
       ...state,
