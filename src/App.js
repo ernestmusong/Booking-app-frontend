@@ -8,6 +8,7 @@ import CarList from 'components/home/CarList';
 import Login from 'components/session/Login';
 import SignUp from 'components/session/SignUp';
 import CarFrom from 'components/forms/CarFrom';
+import DetailsContainer from 'components/DetailsContainer';
 
 const App = () => (
   <>
@@ -15,6 +16,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="cars" element={<CarList />} />
+      <Route path="detail/:id" element={<DetailsContainer />} />
       <Route path="reservations" element={<MyReservations />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />
