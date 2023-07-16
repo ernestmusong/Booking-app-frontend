@@ -1,0 +1,19 @@
+:root {
+  --limeGreen: limegreen;
+  --mainWhite: #f0f0f0;
+  --secondaryBlack: #333;
+  --white: #fff;
+}
+
+.btn {
+  width: 150px;
+  background: var(--limeGreen);
+  color: var(--mainWhite);
+  border-radius: 25px;
+}
+
+.btn:hover {
+  background: var(--mainWhite);
+  color: var(--limeGreen);
+  border: 1px solid var(--limeGreen);
+}

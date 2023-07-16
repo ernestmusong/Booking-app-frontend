@@ -8,6 +8,7 @@ import CarList from 'components/home/CarList';
 import Login from 'components/session/Login';
 import SignUp from 'components/session/SignUp';
 import ReservationForm from 'components/ReservationForm';
+import DetailsContainer from 'components/DetailsContainer';
 import { useDispatch } from 'react-redux';
 import { getCars } from 'redux/cars/carsSlice';
 import { useEffect } from 'react';
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cars" element={<CarList />} />
+        <Route path="detail/:id" element={<DetailsContainer />} />
         <Route path="/reservations" element={<MyReservations />} />
         <Route path="/make-reservations" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
@@ -31,4 +33,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;
