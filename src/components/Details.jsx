@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import '../styles/Detail.css';
+import '../styles/Button.css';
 import { useDispatch } from 'react-redux';
 import { selectCar } from 'redux/cars/carsSlice';
 
@@ -32,8 +33,8 @@ const Details = ({ detail }) => {
             </li>
           </ul>
         </div>
-        <NavLink to="/reserve" className="btn-link">
-          <button type="button" className="btn" onClick={() => dispatch(selectCar(detail))}>Reserve</button>
+        <NavLink to="/make-reservations" className="btn-link">
+          <button type="button" className="btn reserve-btn" onClick={() => dispatch(selectCar(detail))}>Reserve</button>
         </NavLink>
       </div>
     </main>

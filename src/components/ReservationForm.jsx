@@ -4,7 +4,7 @@ import { postReservation } from 'redux/reservations/carReserve';
 import { Link } from 'react-router-dom';
 
 const ReservationForm = () => {
-  const { reservation: { isLoading }, cars: { cars } } = useSelector((store) => store);
+  const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
   const dispatch = useDispatch();
   const [city, setCity] = useState('');
   const [reservationDate, setReservationDate] = useState('');
@@ -38,6 +38,9 @@ const ReservationForm = () => {
       <h3>Reserve A Car</h3>
       <form onSubmit={handleReservation}>
         {error && <p>{error}</p>}
+        <label htmlFor="name" className="form-label">
+          <input type="text" id="name" value="user.name" className="form-control" />
+        </label>
         <label className="form-label" htmlFor="city">
           Enter your city
           <select
@@ -79,10 +82,10 @@ const ReservationForm = () => {
           <select
             className="form-control"
             id="car"
-            value={carId}
+            value={!carSelected ? carId : carSelected.id}
             onChange={(e) => setCarId(e.target.value)}
           >
-            <option value="">Select a Car</option>
+            <option value={!carSelected ? '' : carSelected.fields.name}>Select a Car</option>
             {cars.map((car) => (
               <option key={car.id} value={car.id}>
                 {car.fields.name}
