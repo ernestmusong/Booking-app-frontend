@@ -11,6 +11,18 @@ const ReservationForm = () => {
   const [returningDate, setReturningDate] = useState('');
   const [carId, setCarId] = useState('');
   const [error, setError] = useState('');
+  const cities = [
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Houston',
+    'Phoenix',
+    'Philadelphia',
+    'San Antonio',
+    'San Diego',
+    'Dallas',
+    'San Jose',
+  ];
   const handleReservation = async (event) => {
     event.preventDefault();
     try {
@@ -28,14 +40,19 @@ const ReservationForm = () => {
         {error && <p>{error}</p>}
         <label className="form-label" htmlFor="city">
           Enter your city
-          <input
+          <select
             className="form-control"
-            type="text"
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder="Enter Your City"
-          />
+          >
+            <option value="">Select a Car</option>
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
         </label>
         <label className="form-label" htmlFor="date">
           Reservation Date
@@ -78,7 +95,7 @@ const ReservationForm = () => {
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
             {isLoading ? 'reservation...' : 'reserve'}
           </button>
-          <Link to="/cars" className="btn text-light btn-secondary">See Cars</Link>
+          <Link to="/cars" className="btn btn-secondary">See Cars</Link>
         </div>
       </form>
     </div>
