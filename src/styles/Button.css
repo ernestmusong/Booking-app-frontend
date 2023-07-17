@@ -13,7 +13,7 @@
 }
 
 .btn:hover {
-  background: var(--mainWhite);
+  background: transparent;
   color: var(--limeGreen);
   border: 1px solid var(--limeGreen);
 }
