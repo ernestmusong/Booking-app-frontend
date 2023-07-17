@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { ProgressBar } from 'react-loader-spinner';
-import { getCars } from '../../redux/cars/carsSlice';
 import Car from './Car';
 import Title from './Tittle';
 
 function CarList() {
-  const dispatch = useDispatch();
   const { cars, isLoading, error } = useSelector((store) => store.cars);
-
-  useEffect(() => {
-    dispatch(getCars('CARS'));
-  }, [dispatch]);
 
   if (isLoading) {
     return (

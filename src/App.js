@@ -7,22 +7,33 @@ import MyReservations from 'components/MyReservations';
 import CarList from 'components/home/CarList';
 import Login from 'components/session/Login';
 import SignUp from 'components/session/SignUp';
+import ReservationForm from 'components/ReservationForm';
 import CarFrom from 'components/forms/CarFrom';
 import DetailsContainer from 'components/DetailsContainer';
+import { useDispatch } from 'react-redux';
+import { getCars } from 'redux/cars/carsSlice';
+import { useEffect } from 'react';
 
-const App = () => (
-  <>
-    <NavigationPanel />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="cars" element={<CarList />} />
-      <Route path="detail/:id" element={<DetailsContainer />} />
-      <Route path="reservations" element={<MyReservations />} />
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<SignUp />} />
-      <Route path="add-car" element={<CarFrom />} />
-      <Route path="signup" element={<SignUp />} />
-    </Routes>
-  </>
-);
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCars('CARS'));
+  }, [dispatch]);
+  return (
+    <>
+      <NavigationPanel />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cars" element={<CarList />} />
+        <Route path="detail/:id" element={<DetailsContainer />} />
+        <Route path="/reservations" element={<MyReservations />} />
+        <Route path="/make-reservations" element={<ReservationForm />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="add-car" element={<CarFrom />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </>
+  );
+};
+
 export default App;

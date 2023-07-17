@@ -21,11 +21,21 @@ const initialState = {
   cars: [],
   isLoading: true,
   error: '',
+  carSelected: false,
 };
 
 export const carsSlice = createSlice({
   name: 'cars',
   initialState,
+  reducers: {
+    selectCar: (state, action) => {
+      const carSelected = action.payload;
+      return {
+        ...state,
+        carSelected,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCars.pending, (state) => ({
@@ -46,4 +56,5 @@ export const carsSlice = createSlice({
   },
 });
 
+export const { selectCar } = carsSlice.actions;
 export default carsSlice.reducer;

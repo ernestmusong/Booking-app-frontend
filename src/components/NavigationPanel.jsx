@@ -9,8 +9,8 @@ import logo from '../assets/Frame.png';
 
 const links = [
   { path: '/', text: 'Cars' },
-  { path: '/reserve', text: 'Reserve a car', id: 'border' },
-  { path: '/reservations', text: 'My reservations' },
+  { path: '/make-reservations', text: 'Reserve a car', id: 'border' },
+  { path: '/my-reservations', text: 'My reservations' },
   { path: '/add-car', text: 'Add car' },
   { path: '/delete', text: 'Delete car' },
 ];
