@@ -13,6 +13,7 @@ import DetailsContainer from 'components/DetailsContainer';
 import { useDispatch } from 'react-redux';
 import { getCars } from 'redux/cars/carsSlice';
 import { useEffect } from 'react';
+import Delete from 'components/Delete';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/reservations" element={<MyReservations />} />
         <Route path="/make-reservations" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/delete" element={<Delete />} />
         <Route path="add-car" element={<CarFrom />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
