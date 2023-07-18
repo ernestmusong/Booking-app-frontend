@@ -22,12 +22,13 @@
   width: 15%;
 }
 
-nav {
+.navbar {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4rem;
   align-items: center;
+  background: var(--white);
 }
 
 .logo-container {
@@ -182,4 +183,25 @@ footer {
 .article-description {
   text-align: center;
   font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .splash_text_wrap h1 {
+    font-size: 2.5rem;
+  }
+
+  .navigation-panel {
+    display: none;
+  }
+
+  .classes-wrapper {
+    width: 100%;
+    right: 0;
+    position: absolute;
+    height: 100%;
+    padding-bottom: 4rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 999;
+  }
 }
