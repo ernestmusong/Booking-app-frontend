@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+:root {
+  --limeGreen: limegreen;
+  --mainWhite: #f0f0f0;
+  --secondaryBlack: #333;
+  --white: #fff;
+}
+
+#splash_screen {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  border: 2px solid #777;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+}
+
+.splash_text_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+  width: 100%;
+}
+
+.splash_text_wrap h1 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  text-align: center;
+}
+
+.splash_btn {
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  color: var(--mainWhite);
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.splash_btn_wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  flex-direction: column;
+  height: auto;
+  background-color: transparent;
+  border: none;
+}
+
+#login {
+  background: var(--limeGreen);
+}
+
+#signup {
+  color: #777;
+}
+
+@media (min-width: 768px) {
+  .splash_text_wrap h1 {
+    font-size: 2.5rem;
+  }
+}
