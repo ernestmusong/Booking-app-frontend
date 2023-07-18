@@ -1,5 +1,5 @@
 import './styles/App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
@@ -15,13 +15,20 @@ import { useEffect } from 'react';
 import WelcomePage from 'components/WelcomePage';
 
 const App = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+  const isSignUpPage = location.pathname === '/signup';
+  const isRootPage = location.pathname === '/';
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCars('CARS'));
-  }, [dispatch]);
+    if (!isLoginPage || !isSignUpPage || isRootPage) {
+      dispatch(getCars('CARS'));
+    }
+  }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
+
   return (
     <>
-      <NavigationPanel />
+      {!isLoginPage && !isSignUpPage && <NavigationPanel />}
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="detail/:id" element={<DetailsContainer />} />
