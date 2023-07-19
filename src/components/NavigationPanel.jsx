@@ -8,7 +8,7 @@ import { TfiGoogle } from 'react-icons/tfi';
 import logo from '../assets/Frame.png';
 
 const links = [
-  { path: '/', text: 'Cars' },
+  { path: '/home', text: 'Cars' },
   { path: '/make-reservations', text: 'Reserve a car', id: 'border' },
   { path: '/my-reservations', text: 'My reservations' },
   { path: '/add-car', text: 'Add car' },

@@ -1,10 +1,9 @@
 import './styles/App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
 import MyReservations from 'components/MyReservations';
-import CarList from 'components/home/CarList';
 import Login from 'components/session/Login';
 import SignUp from 'components/session/SignUp';
 import ReservationForm from 'components/ReservationForm';
@@ -14,23 +13,30 @@ import { useDispatch } from 'react-redux';
 import { getCars } from 'redux/cars/carsSlice';
 import { useEffect } from 'react';
 import Delete from 'components/Delete';
-
+import WelcomePage from 'components/WelcomePage';
 const App = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+  const isSignUpPage = location.pathname === '/signup';
+  const isRootPage = location.pathname === '/';
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCars('CARS'));
-  }, [dispatch]);
+    if (!isLoginPage || !isSignUpPage || isRootPage) {
+      dispatch(getCars('CARS'));
+    }
+  }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
+
   return (
     <>
-      <NavigationPanel />
+      {!isLoginPage && !isSignUpPage && <NavigationPanel />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cars" element={<CarList />} />
+        <Route path="/home" element={<Home />} />
         <Route path="detail/:id" element={<DetailsContainer />} />
         <Route path="/reservations" element={<MyReservations />} />
         <Route path="/make-reservations" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/delete" element={<Delete />} />
+        <Route path="/" element={<WelcomePage />} />
         <Route path="add-car" element={<CarFrom />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>

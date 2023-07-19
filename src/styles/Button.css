@@ -1,6 +1,6 @@
 :root {
-  --limeGreen: limegreen;
-  --mainWhite: #f0f0f0;
+  --limeGreen: rgb(50, 205, 50);
+  --mainWhite: rgb(240, 240, 240);
   --secondaryBlack: #333;
   --white: #fff;
 }
@@ -13,7 +13,7 @@
 }
 
 .btn:hover {
-  background: var(--mainWhite);
+  background: transparent;
   color: var(--limeGreen);
   border: 1px solid var(--limeGreen);
 }
