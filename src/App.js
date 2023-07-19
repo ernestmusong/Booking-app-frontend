@@ -14,6 +14,7 @@ import { getCars } from 'redux/cars/carsSlice';
 import { useEffect } from 'react';
 import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
+
 const App = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -21,7 +22,7 @@ const App = () => {
   const isRootPage = location.pathname === '/';
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!isLoginPage || !isSignUpPage || isRootPage) {
+    if (!isLoginPage && !isSignUpPage && !isRootPage) {
       dispatch(getCars('CARS'));
     }
   }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);

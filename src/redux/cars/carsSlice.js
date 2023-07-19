@@ -30,8 +30,15 @@ export const carsSlice = createSlice({
   reducers: {
     selectCar: (state, action) => {
       const carSelected = action.payload;
+      const updatedCars = state.cars.map((car) => {
+        if (car.id === action.payload.id) {
+          return { ...car, reserved: true };
+        }
+        return car;
+      });
       return {
         ...state,
+        cars: updatedCars,
         carSelected,
       };
     },
@@ -44,7 +51,7 @@ export const carsSlice = createSlice({
       }))
       .addCase(getCars.fulfilled, (state, action) => ({
         ...state,
-        cars: action.payload || [],
+        cars: action.payload.map((car) => ({ ...car, reserved: false })),
         isLoading: false,
       }))
 

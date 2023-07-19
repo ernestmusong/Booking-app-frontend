@@ -1,9 +1,10 @@
 const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
-const url = 'api/v1/session';
+const urlSignUp = 'https://localhost:3000/users';
+const urlLogin = 'https://localhost:3000/users/sign_in';
 
 export const login = createAsyncThunk('src/redux/session/sessionSlice"log"', async (user) => {
-  const response = await fetch(url, {
+  const response = await fetch(urlLogin, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,17 +17,18 @@ export const login = createAsyncThunk('src/redux/session/sessionSlice"log"', asy
   return data;
 });
 
-export const signUp = createAsyncThunk('src/redux/session/sessionSlice"sign"', async (user) => {
-  const response = await fetch(url, {
+export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', async (users) => {
+  const response = await fetch(urlSignUp, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: user.name,
-      email: user.email,
-      password: user.password,
-      confirmation_password: user.confirmPassword,
+      user: {
+        name: users.name,
+        email: users.email,
+        password: users.password,
+      },
     }),
   });
   const data = await response.json();
@@ -34,7 +36,7 @@ export const signUp = createAsyncThunk('src/redux/session/sessionSlice"sign"', a
 });
 
 const initialState = {
-  user: '',
+  signUpData: '',
   loading: false,
 };
 
@@ -46,13 +48,15 @@ const sessionSlice = createSlice({
       ...state,
       loading: true,
     }));
-    builder.addCase(login.fulfilled, (state) => ({
+    builder.addCase(login.fulfilled, (state, { payload }) => ({
       ...state,
       loading: false,
+      signUpData: payload,
     }));
-    builder.addCase(login.rejected, (state) => ({
+    builder.addCase(login.rejected, (state, { payload }) => ({
       ...state,
       loading: false,
+      signUpData: payload,
     }));
   },
 });
