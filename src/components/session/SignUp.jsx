@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from 'redux/session/sessionSlice';
+import { signUp } from 'redux/session/sessionSlice';
 
 const Login = () => {
   const { loading } = useSelector((store) => store.session);
@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await dispatch(login({ name, email, password }));
+      await dispatch(signUp({ name, email, password }));
       setName('');
       setError(null);
     } catch (error) {

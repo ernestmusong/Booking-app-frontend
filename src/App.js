@@ -16,6 +16,7 @@ import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
 
 const App = () => {
+  // const { signUpData } = useSelector((store) => store.session);
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
   const isSignUpPage = location.pathname === '/signup';
