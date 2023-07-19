@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await dispatch(login({ name }));
+      await dispatch(login({ name, email, password }));
       setName('');
       setError(null);
     } catch (error) {
@@ -54,7 +54,7 @@ const Login = () => {
         <label htmlFor="password" className="form-label">
           Password:
           <input
-            type="text"
+            type="password"
             className="form-control"
             id="password"
             placeholder="Your Password"
@@ -65,7 +65,7 @@ const Login = () => {
         <label htmlFor="confirm-password" className="form-label">
           Confirm Password:
           <input
-            type="text"
+            type="password"
             className="form-control"
             id="confirm-password"
             placeholder="Confirm password"
