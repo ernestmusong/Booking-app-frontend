@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
-import MyReservations from 'components/MyReservations';
+import MyReservations from 'components/my-reservations/MyReservations';
 import Login from 'components/session/Login';
 import SignUp from 'components/session/SignUp';
 import ReservationForm from 'components/ReservationForm';
@@ -33,7 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="detail/:id" element={<DetailsContainer />} />
-        <Route path="/reservations" element={<MyReservations />} />
+        <Route path="/my-reservations" element={<MyReservations />} />
         <Route path="/make-reservations" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/delete" element={<Delete />} />
