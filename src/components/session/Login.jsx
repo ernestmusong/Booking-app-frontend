@@ -6,14 +6,14 @@ import { login } from 'redux/session/sessionSlice';
 const Login = () => {
   const { loading } = useSelector((store) => store.session);
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await dispatch(login({ name }));
-      setName('');
+      await dispatch(login({ email, password }));
       setError(null);
     } catch (error) {
       setError('Wrong name, please check.');
@@ -22,22 +22,33 @@ const Login = () => {
 
   return (
     <div className="form-wrap">
+      {error && <small className="text-alert fs-5">{error}</small>}
       <h3>Log in</h3>
       <form onSubmit={handleLogin}>
-        <label htmlFor="name" className="form-label">
-          User Name:
+        <label htmlFor="email" className="form-label">
+          Email :
           <input
             type="text"
             className="form-control"
-            id="name"
+            id="email"
             placeholder="Your Username"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             aria-describedby="name-error"
           />
         </label>
-        {error && <p className="error-message" id="name-error">{error}</p>}
-
+        <label htmlFor="password">
+          password :
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Your Username"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            aria-describedby="name-error"
+          />
+        </label>
         <div className="link mt-2 d-flex justify-content-between w-100">
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? 'Logging in...' : 'Log In'}
