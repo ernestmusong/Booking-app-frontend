@@ -1,5 +1,7 @@
 import './styles/App.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import {
+  Route, Routes, useLocation, useNavigate,
+} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from 'components/home/Home';
 import NavigationPanel from 'components/NavigationPanel';
@@ -9,38 +11,48 @@ import SignUp from 'components/session/SignUp';
 import ReservationForm from 'components/ReservationForm';
 import CarFrom from 'components/forms/CarFrom';
 import DetailsContainer from 'components/DetailsContainer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCars } from 'redux/cars/carsSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
 
 const App = () => {
-  // const { signUpData } = useSelector((store) => store.session);
+  const { isSignIn } = useSelector((store) => store.session);
+  const navigate = useNavigate();
   const location = useLocation();
+  const [isSign, setIsSignIn] = useState(false);
   const isLoginPage = location.pathname === '/login';
   const isSignUpPage = location.pathname === '/signup';
   const isRootPage = location.pathname === '/';
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!isLoginPage && !isSignUpPage && !isRootPage) {
+    if (!isLoginPage && !isSignUpPage && !isRootPage && !isSignIn) {
       dispatch(getCars('CARS'));
+      navigate('/');
     }
-  }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
+    if (isSignIn) {
+      setIsSignIn(true);
+    }
+  }, [dispatch, isLoginPage, isSignUpPage, isRootPage, isSignIn, navigate]);
 
   return (
     <>
-      {!isLoginPage && !isSignUpPage && <NavigationPanel />}
+      {!isLoginPage && !isSignUpPage && isSign && <NavigationPanel />}
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="detail/:id" element={<DetailsContainer />} />
-        <Route path="/my-reservations" element={<MyReservations />} />
-        <Route path="/make-reservations" element={<ReservationForm />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/delete" element={<Delete />} />
+        {isSign && (
+        <>
+          <Route path="/home" element={<Home />} />
+          <Route path="detail/:id" element={<DetailsContainer />} />
+          <Route path="/my-reservations" element={<MyReservations />} />
+          <Route path="/make-reservations" element={<ReservationForm />} />
+          <Route path="add-car" element={<CarFrom />} />
+          <Route path="/delete" element={<Delete />} />
+        </>
+        )}
         <Route path="/" element={<WelcomePage />} />
-        <Route path="add-car" element={<CarFrom />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );

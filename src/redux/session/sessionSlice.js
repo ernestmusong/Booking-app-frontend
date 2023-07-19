@@ -74,7 +74,9 @@ export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', as
 
 const initialState = {
   signUpData: null,
+  isSignIn: false,
   loading: false,
+  isAdmin: false,
 };
 
 const sessionSlice = createSlice({
@@ -89,10 +91,12 @@ const sessionSlice = createSlice({
       ...state,
       loading: false,
       signUpData: payload,
+      isSignIn: true,
     }));
     builder.addCase(login.rejected, (state) => ({
       ...state,
       loading: false,
+      isSignIn: false,
     }));
     builder.addCase(signUp.pending, (state) => ({
       ...state,
