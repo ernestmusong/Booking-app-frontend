@@ -6,6 +6,7 @@ import {
 } from 'react-icons/fa6';
 import { TfiGoogle } from 'react-icons/tfi';
 import logo from '../assets/Frame.png';
+import MobileNavigation from './home/MobileNavigation';
 
 const links = [
   { path: '/home', text: 'Cars' },
@@ -55,6 +56,7 @@ const NavigationPanel = () => (
         </div>
       </footer>
     </div>
+    <MobileNavigation />
   </>
 );
 
