@@ -85,18 +85,22 @@
     margin-left: 15%;
     right: 0;
   }
+
   .image-wrap {
     width: 55%;
     height: 80%;
   }
+
   .text-section {
     align-items: flex-end;
     height: 80%;
     width: 30%;
   }
+
   .up {
     align-items: flex-end;
   }
+
   .detail-list {
     align-items: flex-start;
     gap: 1rem;
@@ -108,5 +112,4 @@
   .text-muted {
     text-align: left;
   }
-  
 }
