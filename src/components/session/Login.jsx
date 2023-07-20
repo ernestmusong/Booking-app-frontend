@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from 'redux/session/sessionSlice';
+import { login } from 'redux/session/loginSlice';
 
 const Login = () => {
-  const { loading } = useSelector((store) => store.session);
+  const { loading, message } = useSelector((store) => store.login);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -16,7 +16,12 @@ const Login = () => {
     try {
       await dispatch(login({ email, password }));
       setError(null);
-      navigate('/home');
+      console.log(message);
+      if (message === 'User signed in successfully') {
+        navigate('/home');
+      } else {
+        navigate('/login');
+      }
     } catch (error) {
       setError('Wrong name, please check.');
     }

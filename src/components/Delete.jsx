@@ -2,7 +2,22 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Delete = () => {
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/cars/${id}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+      // Handle the response
+    } catch (error) {
+      // Handle the error
+      return null;
+    }
+  };
   const { cars } = useSelector((store) => store.cars);
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <div className="container-fluid d-flex align-items-center gap-5 flex-column mt-5">
       <h3 className="fs-1">Available Cars</h3>
@@ -19,9 +34,20 @@ const Delete = () => {
           {cars.map((car, index) => (
             <tr key={car.id}>
               <th className="p-2 text-center" scope="row">{index + 1}</th>
-              <td className="p-2 text-start">{car.fields.name}</td>
-              <td className="p-2 text-start">{car.fields.description}</td>
-              <td className="p-2 text-center"><span className="badge bg-secondary w-75 p-2">Remove</span></td>
+              <td className="p-2 text-start">{car.name}</td>
+              <td className="p-2 text-start">{car.description}</td>
+              {user && user.role === 1(
+                <td className="p-2 text-center">
+                  <button
+                    id="deleteButton"
+                    type="button"
+                    className="badge bg-secondary w-75 p-2"
+                    onClick={() => handleDelete(car.id)}
+                  >
+                    Delete
+                  </button>
+                </td>,
+              )}
             </tr>
           ))}
         </tbody>

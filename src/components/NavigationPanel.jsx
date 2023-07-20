@@ -20,6 +20,7 @@ const NavigationPanel = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     navigate('/login');
   };
   return (

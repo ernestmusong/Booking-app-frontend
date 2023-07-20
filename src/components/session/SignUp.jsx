@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { signUp } from 'redux/session/sessionSlice';
+import { signUp } from 'redux/session/signUpSlice';
 
 const SignUp = () => {
   const { loading } = useSelector((store) => store.session);
@@ -58,7 +58,7 @@ const SignUp = () => {
     return isValid;
   };
 
-  const handleLogin = async (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
     if (validateForm()) {
       try {
@@ -75,7 +75,7 @@ const SignUp = () => {
     <div className="form-wrap">
       {error && <small className="error-message fs-5 text-danger" id="name-error">{error}</small>}
       <h3>Sign Up</h3>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSignUp}>
         <label htmlFor="name" className="form-label">
           User Name:
           <input
