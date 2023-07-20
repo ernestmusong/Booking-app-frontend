@@ -2,12 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Delete = () => {
+
+  const text = 'Delete';
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`/api/cars/${id}`, {
         method: 'DELETE',
       });
       const data = await response.json();
+      text = 'Removed';
       console.log(data);
       return data;
       // Handle the response
@@ -44,7 +47,7 @@ const Delete = () => {
                     className="badge bg-secondary w-75 p-2"
                     onClick={() => handleDelete(car.id)}
                   >
-                    Delete
+                    {text}
                   </button>
                 </td>,
               )}
