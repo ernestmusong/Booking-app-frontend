@@ -2,7 +2,7 @@ const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
 const urlSignUp = 'http://localhost:3000/users';
 const urlLogin = 'http://localhost:3000/users/sign_in';
-const urlLogout = 'http://localhost:3000/users/sign_out';
+// const urlLogout = 'http://localhost:3000/users/sign_out';
 
 export const login = createAsyncThunk('session/login', async (users) => {
   try {
@@ -33,26 +33,26 @@ export const login = createAsyncThunk('session/login', async (users) => {
   }
 });
 
-export const logout = createAsyncThunk('session/logout', async () => {
-  try {
-    const authToken = localStorage.getItem('authToken');
-    const response = await fetch(urlLogout, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData };
-    }
-    localStorage.removeItem('authToken');
-    return {};
-  } catch (error) {
-    return { error: 'Something went wrong!' };
-  }
-});
+// export const logout = createAsyncThunk('session/logout', async () => {
+//   try {
+//     const authToken = localStorage.getItem('authToken');
+//     const response = await fetch(urlLogout, {
+//       method: 'DELETE',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//     });
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       return { error: errorData };
+//     }
+//     localStorage.removeItem('authToken');
+//     return {};
+//   } catch (error) {
+//     return { error: 'Something went wrong!' };
+//   }
+// });
 
 export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', async (users) => {
   const response = await fetch(urlSignUp, {

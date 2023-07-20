@@ -33,7 +33,7 @@ const Login = () => {
             type="text"
             className="form-control"
             id="email"
-            placeholder="Your Username"
+            placeholder="Your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-describedby="name-error"

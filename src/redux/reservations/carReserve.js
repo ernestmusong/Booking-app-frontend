@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const baseURL = 'http://localhost:3000/api/';
 
 export const postReservation = createAsyncThunk('car/reservations', async (reserve) => {
-  console.log(reserve);
   const authToken = localStorage.getItem('authToken');
   const response = await fetch(`${baseURL}users/${reserve.id}/reservations`, {
     method: 'POST',
