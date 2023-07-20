@@ -11,24 +11,24 @@ const Details = ({ detail }) => {
   return (
     <main className="details-page">
       <div className="image-wrap">
-        <img src={detail.fields.image[0].url} alt={detail.fields.name} />
+        <img src={detail.image} alt={detail.name} />
       </div>
       <div className="text-section">
         <div className="up">
-          <h3>{detail.fields.name}</h3>
-          <p className="text-muted">Ltatum soluta mollitia nostrum tempora eveniet aut, ratione.</p>
+          <h3>{detail.name}</h3>
+          <p className="text-muted">{detail.description}</p>
           <ul className="detail-list">
             <li>
               <span>Model:</span>
               {' '}
-              <span>{detail.fields.price}</span>
+              <span>{detail.model}</span>
             </li>
             <li>
               <span>Price:</span>
               {' '}
               <span>
                 $
-                {detail.fields.price}
+                {detail.price}
               </span>
             </li>
           </ul>

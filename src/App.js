@@ -1,6 +1,6 @@
 import './styles/App.css';
 import {
-  Route, Routes, useLocation, useNavigate,
+  Route, Routes, useLocation,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from 'components/home/Home';
@@ -11,36 +11,34 @@ import SignUp from 'components/session/SignUp';
 import ReservationForm from 'components/ReservationForm';
 import CarFrom from 'components/forms/CarFrom';
 import DetailsContainer from 'components/DetailsContainer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCars } from 'redux/cars/carsSlice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
 
 const App = () => {
-  const { isSignIn } = useSelector((store) => store.session);
-  const navigate = useNavigate();
+  // const { isSignIn } = useSelector((store) => store.session);
+  // const navigate = useNavigate();
   const location = useLocation();
-  const [isSign, setIsSignIn] = useState(false);
+  // const [isSign, setIsSignIn] = useState(false);
   const isLoginPage = location.pathname === '/login';
   const isSignUpPage = location.pathname === '/signup';
   const isRootPage = location.pathname === '/';
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!isLoginPage && !isSignUpPage && !isRootPage && !isSignIn) {
+    if (!isLoginPage && !isSignUpPage && !isRootPage) {
       dispatch(getCars('CARS'));
-      navigate('/');
     }
-    if (isSignIn) {
-      setIsSignIn(true);
-    }
-  }, [dispatch, isLoginPage, isSignUpPage, isRootPage, isSignIn, navigate]);
+    // if (isSignIn) {
+    //   setIsSignIn(true);
+    // }
+  }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
 
   return (
     <>
-      {!isLoginPage && !isSignUpPage && isSign && <NavigationPanel />}
+      {!isLoginPage && !isSignUpPage && <NavigationPanel />}
       <Routes>
-        {isSign && (
         <>
           <Route path="/home" element={<Home />} />
           <Route path="detail/:id" element={<DetailsContainer />} />
@@ -49,7 +47,6 @@ const App = () => {
           <Route path="add-car" element={<CarFrom />} />
           <Route path="/delete" element={<Delete />} />
         </>
-        )}
         <Route path="/" element={<WelcomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

@@ -85,10 +85,10 @@ const ReservationForm = () => {
             value={!carSelected ? carId : carSelected.id}
             onChange={(e) => setCarId(e.target.value)}
           >
-            <option value={!carSelected ? '' : carSelected.fields.name}>Select a Car</option>
+            <option value={!carSelected ? '' : carSelected.name}>Select a Car</option>
             {cars.map((car) => (
               <option key={car.id} value={car.id}>
-                {car.fields.name}
+                {car.name}
               </option>
             ))}
           </select>

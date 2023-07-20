@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CarCard = ({ car: { fields: { name, image } } }) => (
+const CarCard = ({ car: { name, image, description } }) => (
   <div className="col">
     <div className="card">
-      <img src={image[0].url} className="card-img-top" height="200px" width="100%" alt="..." />
+      <img src={image} className="card-img-top" height="200px" width="100%" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
-        <p className="card-text">this is for the description of the car</p>
+        <p className="card-text">{description}</p>
       </div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item">reservations date</li>
