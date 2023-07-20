@@ -27,7 +27,7 @@ const ReservationForm = () => {
     event.preventDefault();
     try {
       await dispatch(postReservation({
-        carId, city, reservationDate, returningDate,
+        id: 2, carId, city, reservationDate, returningDate,
       }));
     } catch (error) {
       setError(error.message);

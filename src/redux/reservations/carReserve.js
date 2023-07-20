@@ -2,18 +2,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const baseURL = 'http://localhost:3000/api/';
 
-export const postReservation = createAsyncThunk('', async (reserve) => {
-  const response = await fetch(`${baseURL}user/${reserve.id}/reservations`, {
+export const postReservation = createAsyncThunk('car/reservations', async (reserve) => {
+  console.log(reserve);
+  const authToken = localStorage.getItem('authToken');
+  const response = await fetch(`${baseURL}users/${reserve.id}/reservations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `${authToken}`,
     },
     body: JSON.stringify({
-      user_id: reserve.idUser, // it will get from hidden input of current user not reservation id
-      car_id: reserve.idCar,
+      car_id: reserve.carID,
       city: reserve.city,
-      reservation_date: reserve.reservation_date,
-      returning_date: reserve.reservation_date,
+      reservation_date: reserve.reservationDate,
+      returning_date: reserve.returningDate,
     }),
   });
   const data = await response.json();
@@ -21,6 +23,7 @@ export const postReservation = createAsyncThunk('', async (reserve) => {
 });
 
 const initialState = {
+  data: null,
   isLoading: false,
 };
 
@@ -32,9 +35,10 @@ const reservationSlice = createSlice({
       ...state,
       isLoading: true,
     }));
-    builder.addCase(postReservation.fulfilled, (state) => ({
+    builder.addCase(postReservation.fulfilled, (state, { payload }) => ({
       ...state,
       isLoading: false,
+      data: payload,
     }));
     builder.addCase(postReservation.rejected, (state) => ({
       ...state,
