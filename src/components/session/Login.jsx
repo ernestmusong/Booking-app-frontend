@@ -13,21 +13,22 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    dispatch(login({ email, password }));
+    dispatch(login({ email, password })).then(() => {
+      if (localStorage.getItem('user')) {
+        navigate('/home');
+      } else {
+        setEmail('');
+        setPassword('');
+        navigate('/login');
+      }
+    });
     setAlert(null);
     console.log(message);
-    if (message === 'User signed in successfully') {
-      navigate('/home');
-    } else if (message !== 'User signed in successfully') {
-      setEmail('');
-      setPassword('');
-      navigate('/login');
-    }
   };
 
   return (
     <div className="form-wrap">
-      { alert && <small className="text-alert fs-5">{alert}</small>}
+      {alert && <small className="text-alert fs-5">{alert}</small>}
       <h3>Log in</h3>
       <form onSubmit={handleLogin}>
         <label htmlFor="email" className="form-label">
@@ -60,7 +61,9 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Log In
           </button>
-          <Link to="/signup" className="btn text-light btn-secondary">Sign up</Link>
+          <Link to="/signup" className="btn text-light btn-secondary">
+            Sign up
+          </Link>
         </div>
       </form>
     </div>

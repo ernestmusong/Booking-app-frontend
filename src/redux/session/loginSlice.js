@@ -18,8 +18,14 @@ export const login = createAsyncThunk('session/login', async (users) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData };
+      const contentType = response.headers.get('content-type');
+      let errorData = '';
+      if (contentType && contentType.includes('application/json')) {
+        errorData = await response.json();
+      } else {
+        errorData = { status: { message: await response.text() } };
+      }
+      return { data: errorData };
     }
 
     const data = await response.json();
