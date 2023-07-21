@@ -1,10 +1,12 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../styles/Home.css';
 import {
   FaTwitter, FaFacebookF, FaVimeoV, FaPinterestP,
 } from 'react-icons/fa6';
 import { TfiGoogle } from 'react-icons/tfi';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/session/sessionSlice';
 import logo from '../assets/Frame.png';
 import MobileNavigation from './home/MobileNavigation';
 
@@ -17,11 +19,7 @@ const links = [
 ];
 const currentYear = new Date().getFullYear();
 const NavigationPanel = () => {
-  const navigate = useNavigate();
-  const logout = () => {
-    localStorage.removeItem('authToken');
-    navigate('/login');
-  };
+  const dispatch = useDispatch();
   return (
     <>
       <div className="navigation-panel">
@@ -61,7 +59,7 @@ const NavigationPanel = () => {
             </p>
           </div>
         </footer>
-        <button type="button" onClick={() => logout()}>Log out</button>
+        <button type="button" onClick={() => dispatch(logout())}>Log out</button>
       </div>
       <MobileNavigation />
     </>

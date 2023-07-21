@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { signUp } from 'redux/session/sessionSlice';
+import { handleSession, signUp } from 'redux/session/sessionSlice';
 
 const SignUp = () => {
-  const { loading } = useSelector((store) => store.session);
+  const { loading, isSignIn } = useSelector((store) => store.session);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -64,7 +64,10 @@ const SignUp = () => {
       try {
         await dispatch(signUp({ name, email, password }));
         setError(null);
-        navigate('/login');
+        dispatch(handleSession());
+        if (isSignIn) {
+          navigate('/home');
+        }
       } catch (error) {
         setError('Something Went Wrong');
       }

@@ -11,6 +11,7 @@ export const postReservation = createAsyncThunk('car/reservations', async (reser
       Authorization: `${authToken}`,
     },
     body: JSON.stringify({
+      user_id: reserve.id,
       car_id: reserve.carID,
       city: reserve.city,
       reservation_date: reserve.reservationDate,
