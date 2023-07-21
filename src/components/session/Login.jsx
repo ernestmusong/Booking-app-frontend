@@ -17,7 +17,7 @@ const Login = () => {
       await dispatch(login({ email, password }));
       setError(null);
       console.log(message);
-      if (message === 'User signed in successfully') {
+      if (message !== '') {
         navigate('/home');
       } else {
         navigate('/login');
@@ -50,7 +50,7 @@ const Login = () => {
             type="password"
             className="form-control"
             id="password"
-            placeholder="Your Username"
+            placeholder="Your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             aria-describedby="name-error"

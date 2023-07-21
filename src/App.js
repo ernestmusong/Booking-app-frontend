@@ -18,10 +18,7 @@ import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
 
 const App = () => {
-  // const { isSignIn } = useSelector((store) => store.session);
-  // const navigate = useNavigate();
   const location = useLocation();
-  // const [isSign, setIsSignIn] = useState(false);
   const isLoginPage = location.pathname === '/login';
   const isSignUpPage = location.pathname === '/signup';
   const isRootPage = location.pathname === '/';
@@ -30,11 +27,7 @@ const App = () => {
     if (!isLoginPage && !isSignUpPage && !isRootPage) {
       dispatch(getCars('CARS'));
     }
-    // if (isSignIn) {
-    //   setIsSignIn(true);
-    // }
   }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
-
   return (
     <>
       {!isLoginPage && !isSignUpPage && <NavigationPanel />}
@@ -45,7 +38,7 @@ const App = () => {
           <Route path="/my-reservations" element={<MyReservations />} />
           <Route path="/make-reservations" element={<ReservationForm />} />
           <Route path="add-car" element={<CarFrom />} />
-          <Route path="/delete" element={<Delete />} />
+          <Route path="/delete-car" element={<Delete />} />
         </>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/signup" element={<SignUp />} />

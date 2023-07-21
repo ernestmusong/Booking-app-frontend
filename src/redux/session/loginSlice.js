@@ -1,7 +1,6 @@
 const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
 const urlLogin = 'http://localhost:3000/users/sign_in';
-// const urlLogout = 'http://localhost:3000/users/sign_out';
 
 export const login = createAsyncThunk('session/login', async (users) => {
   try {
@@ -28,9 +27,10 @@ export const login = createAsyncThunk('session/login', async (users) => {
     const user = data.status.data;
     console.log(data.status.data);
     console.log(authToken);
+    console.log(authToken);
     if (authToken) {
       localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('authToken', JSON.stringify(authToken));
+      localStorage.setItem('authToken', authToken);
     }
     return { data };
   } catch (error) {
@@ -43,26 +43,20 @@ const initialState = {
   loading: false,
   isAdmin: false,
   message: '',
-  user: null,
 };
 
 const loginSlice = createSlice({
   name: 'login',
   initialState,
-
-  reducers: {
-
-  },
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => ({
       ...state,
       loading: true,
     }));
-    builder.addCase(login.fulfilled, (state, { payload }) => ({
+    builder.addCase(login.fulfilled, (state) => ({
       ...state,
       loading: false,
-      message: payload.data.status.message,
-      user: payload,
+      message: 'User signed in successfully',
       isSignIn: true,
     }));
     builder.addCase(login.rejected, (state) => ({
