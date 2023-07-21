@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signUp } from 'redux/session/signUpSlice';
 
 const SignUp = () => {
-  const { loading } = useSelector((store) => store.session);
+  const { loading } = useSelector((store) => store.signUp);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState('');

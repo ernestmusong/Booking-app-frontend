@@ -23,6 +23,12 @@ const initialState = {
 const deleteSlice = createSlice({
   name: 'deleteCar',
   initialState,
+  reducers: {
+    removeItem: (state, { payload }) => ({
+      ...state,
+      products: [...state.products.filter((item) => item.id !== payload)],
+    }),
+  },
   extraReducers: (builder) => {
     builder.addCase(deleteCar.pending, (state) => ({
       ...state,

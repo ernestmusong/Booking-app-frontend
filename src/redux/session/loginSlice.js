@@ -39,10 +39,10 @@ export const login = createAsyncThunk('session/login', async (users) => {
 });
 
 const initialState = {
-  isSignIn: false,
   loading: false,
   isAdmin: false,
   message: '',
+  error: '',
 };
 
 const loginSlice = createSlice({
@@ -53,16 +53,15 @@ const loginSlice = createSlice({
       ...state,
       loading: true,
     }));
-    builder.addCase(login.fulfilled, (state) => ({
+    builder.addCase(login.fulfilled, (state, { payload }) => ({
       ...state,
       loading: false,
-      message: 'User signed in successfully',
-      isSignIn: true,
+      message: payload.data.status.message,
     }));
-    builder.addCase(login.rejected, (state) => ({
+    builder.addCase(login.rejected, (state, { error }) => ({
       ...state,
       loading: false,
-      isSignIn: false,
+      error: error.message || 'Something went wrong!',
     }));
   },
 });
