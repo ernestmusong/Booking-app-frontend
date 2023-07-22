@@ -1,21 +1,21 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
-const client = axios.create({
-  baseURL: 'http://localhost:3000',
-});
+const urlLogin = 'http://localhost:3000/users/sign_in';
 
-export const login = createAsyncThunk(
-  'session/login',
-  async (email, password, thunkAPI) => {
-    try {
-      const resp = await client.post('/users/sign_in', {
-        email, password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
+export const login = createAsyncThunk('session/login', async (users) => {
+  try {
+    const response = await fetch(urlLogin, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: users.email,
+          password: users.password,
         },
-      });
+      }),
+    });
 
     if (!response.ok) {
       const contentType = response.headers.get('content-type');
@@ -64,10 +64,10 @@ const loginSlice = createSlice({
       loading: false,
       message: payload.data.status.message,
     }));
-    builder.addCase(login.rejected, (state) => ({
+    builder.addCase(login.rejected, (state, { error }) => ({
       ...state,
       loading: false,
-      error: 'Something went wrong!',
+      error: error.message || 'Something went wrong!',
     }));
   },
 });

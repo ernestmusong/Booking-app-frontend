@@ -3,8 +3,6 @@ import carsReducer from './cars/carsSlice';
 import loginReducer from './session/loginSlice';
 import signUpReducer from './session/signUpSlice';
 import carFormReducer from './formSlice/carSlice';
-import deleteReducer from './formSlice/deleteSlice';
-
 import reservationReducer from './reservations/carReserve';
 
 const store = configureStore({
@@ -14,7 +12,6 @@ const store = configureStore({
     cars: carsReducer,
     reservation: reservationReducer,
     carForm: carFormReducer,
-    deleteCar: deleteReducer,
   },
 });
 
