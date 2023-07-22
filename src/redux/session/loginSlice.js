@@ -1,42 +1,36 @@
-const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const urlLogin = 'http://localhost:3000/users/sign_in';
-
-export const login = createAsyncThunk('session/login', async (users) => {
-  try {
-    const response = await fetch(urlLogin, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email: users.email,
-          password: users.password,
-        },
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData };
-    }
-
-    const data = await response.json();
-    const authToken = response.headers.get('Authorization');
-    const user = data.status.data;
-    console.log(data.status.data);
-    console.log(authToken);
-    console.log(authToken);
-    if (authToken) {
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('authToken', authToken);
-    }
-    return { data };
-  } catch (error) {
-    return { error: 'Something went wrong!' };
-  }
+const client = axios.create({
+  baseURL: 'http://localhost:3000',
 });
+
+export const login = createAsyncThunk(
+  'session/login',
+  async (email, password, thunkAPI) => {
+    try {
+      const resp = await client.post('/users/sign_in', {
+        email, password,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const authToken = resp.headers.get('Authorization');
+      const user = resp.data;
+      if (authToken) {
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('authToken', authToken);
+      }
+      console.log(resp.data);
+      console.log(authToken);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
 
 const initialState = {
   loading: false,
@@ -58,10 +52,10 @@ const loginSlice = createSlice({
       loading: false,
       message: payload.data.status.message,
     }));
-    builder.addCase(login.rejected, (state, { error }) => ({
+    builder.addCase(login.rejected, (state) => ({
       ...state,
       loading: false,
-      error: error.message || 'Something went wrong!',
+      error: 'Something went wrong!',
     }));
   },
 });
