@@ -17,20 +17,32 @@ export const login = createAsyncThunk(
         },
       });
 
-      const authToken = resp.headers.get('Authorization');
-      const user = resp.data;
-      if (authToken) {
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('authToken', authToken);
+    if (!response.ok) {
+      const contentType = response.headers.get('content-type');
+      let errorData = '';
+      if (contentType && contentType.includes('application/json')) {
+        errorData = await response.json();
+      } else {
+        errorData = { status: { message: await response.text() } };
       }
-      console.log(resp.data);
-      console.log(authToken);
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('something went wrong');
+      return { data: errorData };
     }
-  },
-);
+
+    const data = await response.json();
+    const authToken = response.headers.get('Authorization');
+    const user = data.status.data;
+    console.log(data.status.data);
+    console.log(authToken);
+    console.log(authToken);
+    if (authToken) {
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('authToken', authToken);
+    }
+    return { data };
+  } catch (error) {
+    return { error: 'Something went wrong!' };
+  }
+});
 
 const initialState = {
   loading: false,
