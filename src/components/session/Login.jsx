@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleSession, login } from 'redux/session/sessionSlice';
 
 const Login = () => {
-  const { loading, isSignIn } = useSelector((store) => store.session);
+  const { loading } = useSelector((store) => store.session);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -16,9 +16,7 @@ const Login = () => {
     await dispatch(login({ email, password }));
     setError(null);
     dispatch(handleSession());
-    if (isSignIn) {
-      navigate('/home');
-    }
+    navigate('/home');
   };
 
   return (
@@ -51,9 +49,11 @@ const Login = () => {
           />
         </label>
         <div className="link mt-2 d-flex justify-content-between w-100">
+
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? 'Logging in...' : 'Log In'}
           </button>
+
           <Link to="/signup" className="btn text-light btn-secondary">Sign up</Link>
         </div>
       </form>

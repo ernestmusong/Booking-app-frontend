@@ -27,6 +27,7 @@ export const login = createAsyncThunk('session/login', async (users) => {
     const data = await response.json();
     const authToken = response.headers.get('Authorization');
     localStorage.setItem('authToken', authToken);
+    localStorage.setItem('user', JSON.stringify(data));
     return { data, authToken };
   } catch (error) {
     return { error: 'Something went wrong!' };
@@ -48,9 +49,10 @@ export const logout = createAsyncThunk('session/logout', async () => {
       return { error: errorData };
     }
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     return {};
   } catch (error) {
-    return { error: 'Something went wrong!' };
+    return error.message;
   }
 });
 
@@ -68,13 +70,22 @@ export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', as
       },
     }),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    return { error: errorData };
+  }
+
+  const authToken = response.headers.get('Authorization');
   const data = await response.json();
+  localStorage.setItem('authToken', authToken);
+  localStorage.setItem('user', JSON.stringify(data));
   return data;
 });
 
 const initialState = {
-  signUpData: null,
-  isSignIn: false,
+  signUpData: JSON.parse(localStorage.getItem('user')) || null,
+  isLoggedIn: !!localStorage.getItem('authToken'),
   loading: false,
   isAdmin: false,
   message: '',
@@ -86,18 +97,21 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     handleSession: (state) => {
-      if (state.signUpData.data.status.message === 'Signed up successfully' || state.signUpData.data.status.message === 'User signed in successfully') {
-        let isAdmin = false;
-        if (state.status.data.role === 1) {
-          isAdmin = true;
-        }
+      const isLoggedIn = !!localStorage.getItem('authToken') || false;
+      if (isLoggedIn) {
+        const signUpData = JSON.parse(localStorage.getItem('user'));
+        const isAdmin = signUpData.status.data.role === 1;
         return ({
           ...state,
-          isSignIn: true,
+          isLoggedIn,
+          signUpData,
           isAdmin,
         });
       }
-      throw {message: 'somthing went wrong'}; //eslint-disable-line
+      return {
+        ...state,
+        isLoggedIn,
+      };
     },
   },
   extraReducers: (builder) => {
