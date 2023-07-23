@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const ReservationForm = () => {
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
+  const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
   const [city, setCity] = useState('');
   const [reservationDate, setReservationDate] = useState('');
@@ -27,7 +28,7 @@ const ReservationForm = () => {
     event.preventDefault();
     try {
       await dispatch(postReservation({
-        id: 2, carId, city, reservationDate, returningDate,
+        id: user.id, carId, city, reservationDate, returningDate,
       }));
     } catch (error) {
       setError(error.message);
@@ -39,7 +40,8 @@ const ReservationForm = () => {
       <form onSubmit={handleReservation}>
         {error && <p>{error}</p>}
         <label htmlFor="name" className="form-label">
-          <input type="text" id="name" value="user.name" className="form-control" />
+          Your Name
+          <input type="text" id="name" value={user.name} className="form-control" />
         </label>
         <label className="form-label" htmlFor="city">
           Enter your city
