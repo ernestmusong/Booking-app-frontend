@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCars } from 'redux/formSlice/carSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NotAdmin from 'components/NotAdmin';
+import { getCars } from 'redux/cars/carsSlice';
 
 const CarFrom = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const CarFrom = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleCar = async (event) => {
     event.preventDefault();
@@ -21,6 +23,8 @@ const CarFrom = () => {
       await dispatch(postCars({
         name, price, description, image, model,
       }));
+      navigate('/home');
+      dispatch(getCars());
     } catch (error) {
       setError(error.massage);
     }

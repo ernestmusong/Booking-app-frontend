@@ -3,10 +3,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const url = 'http://localhost:3000/api/cars/';
 
 export const postCars = createAsyncThunk('fromSlice/postCars', async (car) => {
+  const authToken = localStorage.getItem('authToken');
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `${authToken}`,
     },
     body: JSON.stringify({
       name: car.name,

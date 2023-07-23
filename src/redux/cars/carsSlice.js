@@ -45,6 +45,14 @@ export const carsSlice = createSlice({
         carSelected,
       };
     },
+
+    carRemove: (state, { payload }) => {
+      const carFiltered = state.cars.filter((car) => car.id !== payload);
+      return {
+        ...state,
+        cars: carFiltered,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,5 +74,5 @@ export const carsSlice = createSlice({
   },
 });
 
-export const { selectCar } = carsSlice.actions;
+export const { selectCar, carRemove } = carsSlice.actions;
 export default carsSlice.reducer;

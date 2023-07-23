@@ -110,7 +110,7 @@ const ReservationForm = () => {
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
             {isLoading ? 'reservation...' : 'reserve'}
           </button>
-          <Link to="/cars" className="btn btn-secondary">Reservations</Link>
+          <Link to="/my-reservations" className="btn btn-secondary">Reservations</Link>
         </div>
       </form>
     </div>

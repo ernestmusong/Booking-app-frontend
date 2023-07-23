@@ -5,7 +5,7 @@ import { cancelReservations } from 'redux/reservations/carReserve';
 
 const CarCard = ({
   car: {
-    name, image, description, reservationDate, returningDate, city, id,
+    name, image, description, reservationDate, returningDate, city, resId,
   },
 }) => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const CarCard = ({
           <button
             type="button"
             onClick={() => {
-              dispatch(cancelReservations(id));
+              dispatch(cancelReservations(resId));
               window.location.reload();
             }}
             className="badge bg-light text-dark"

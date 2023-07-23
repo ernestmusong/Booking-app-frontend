@@ -15,6 +15,7 @@ const MyReservations = () => {
     if (reserveCars) {
       return {
         ...reserveCars,
+        resId: res.id,
         reservationDate: res.reservation_date,
         returningDate: res.returning_date,
         city: res.city,
