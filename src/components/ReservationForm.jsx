@@ -10,7 +10,7 @@ const ReservationForm = () => {
   const [city, setCity] = useState('');
   const [reservationDate, setReservationDate] = useState('');
   const [returningDate, setReturningDate] = useState('');
-  const [carId, setCarId] = useState('');
+  const [carId, setCarId] = useState(carSelected ? carSelected.id : '');
   const [error, setError] = useState('');
   const cities = [
     'New York',
@@ -38,6 +38,9 @@ const ReservationForm = () => {
       return;
     }
     setError('');
+    console.log({
+      id: user.id, carId, city, reservationDate, returningDate,
+    });
     await dispatch(postReservation({
       id: user.id, carId, city, reservationDate, returningDate,
     }));
@@ -92,10 +95,10 @@ const ReservationForm = () => {
           <select
             className="form-control"
             id="car"
-            value={!carSelected ? carId : carSelected.id}
+            value={carId}
             onChange={(e) => setCarId(e.target.value)}
           >
-            <option value={!carSelected ? '' : carSelected.name}>Select a Car</option>
+            {!carSelected ? <option value="">Select a car</option> : <option value={carSelected.id}>{carSelected.name}</option>}
             {cars.map((car) => (
               <option key={car.id} value={car.id}>
                 {car.name}
