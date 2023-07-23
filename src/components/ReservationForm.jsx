@@ -38,9 +38,6 @@ const ReservationForm = () => {
       return;
     }
     setError('');
-    console.log({
-      id: user.id, carId, city, reservationDate, returningDate,
-    });
     await dispatch(postReservation({
       id: user.id, carId, city, reservationDate, returningDate,
     }));
