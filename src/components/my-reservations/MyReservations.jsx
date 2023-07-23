@@ -11,7 +11,7 @@ const MyReservations = () => {
   }, [dispatch]);
   const { cars: { cars }, reservation: { reserve } } = useSelector((store) => store);
   const carData = reserve.map((res) => {
-    const reserveCars = cars.find((car) => car.id === res.id);
+    const reserveCars = cars.find((car) => car.id === res.car_id);
     if (reserveCars) {
       return {
         ...reserveCars,
