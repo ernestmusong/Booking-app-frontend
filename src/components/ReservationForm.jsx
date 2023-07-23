@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReservation } from 'redux/reservations/carReserve';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ReservationForm = () => {
+  const navigate = useNavigate();
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
   const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const ReservationForm = () => {
     await dispatch(postReservation({
       id: user.id, carId, city, reservationDate, returningDate,
     }));
+    navigate('/my-reservations');
   };
   return (
     <div className="form-wrap">
@@ -108,7 +110,7 @@ const ReservationForm = () => {
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
             {isLoading ? 'reservation...' : 'reserve'}
           </button>
-          <Link to="/cars" className="btn btn-secondary">See Cars</Link>
+          <Link to="/cars" className="btn btn-secondary">Reservations</Link>
         </div>
       </form>
     </div>
