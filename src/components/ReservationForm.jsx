@@ -11,7 +11,7 @@ const ReservationForm = () => {
   const [reservationDate, setReservationDate] = useState('');
   const [returningDate, setReturningDate] = useState('');
   const [carId, setCarId] = useState('');
-  const [error, setError] = useState('');
+  const [error] = useState('');
   const cities = [
     'New York',
     'Los Angeles',
@@ -26,13 +26,9 @@ const ReservationForm = () => {
   ];
   const handleReservation = async (event) => {
     event.preventDefault();
-    try {
-      await dispatch(postReservation({
-        id: user.id, carId, city, reservationDate, returningDate,
-      }));
-    } catch (error) {
-      setError(error.message);
-    }
+    await dispatch(postReservation({
+      id: user.id, carId, city, reservationDate, returningDate,
+    }));
   };
   return (
     <div className="form-wrap">

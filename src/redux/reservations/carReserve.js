@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const baseURL = 'http://localhost:3000/api/';
+const baseUrl = 'http://localhost:3000/api/';
 
 export const postReservation = createAsyncThunk('car/reservations', async (reserve) => {
   const authToken = localStorage.getItem('authToken');
-  const response = await fetch(`${baseURL}users/${reserve.id}/reservations`, {
+  console.log(reserve);
+  const response = await fetch(`${baseUrl}users/${reserve.id}/reservations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -12,17 +13,37 @@ export const postReservation = createAsyncThunk('car/reservations', async (reser
     },
     body: JSON.stringify({
       user_id: reserve.id,
-      car_id: reserve.carID,
       city: reserve.city,
       reservation_date: reserve.reservationDate,
       returning_date: reserve.returningDate,
+      car_id: reserve.carId,
     }),
   });
   const data = await response.json();
   return data;
 });
 
+export const getReservations = createAsyncThunk(
+  'cars/reservations',
+  async () => {
+    const authToken = localStorage.getItem('authToken');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${authToken}`,
+      },
+    };
+
+    const resp = await fetch(`${baseUrl}/users/${user.id}/reservations`, requestOptions);
+    const data = await resp.json();
+    return data;
+  },
+);
+
 const initialState = {
+  reserve: [],
   data: null,
   isLoading: false,
 };
@@ -41,6 +62,19 @@ const reservationSlice = createSlice({
       data: payload,
     }));
     builder.addCase(postReservation.rejected, (state) => ({
+      ...state,
+      isLoading: false,
+    }));
+    builder.addCase(getReservations.pending, (state) => ({
+      ...state,
+      isLoading: true,
+    }));
+    builder.addCase(getReservations.fulfilled, (state, { payload }) => ({
+      ...state,
+      isLoading: false,
+      reserve: payload,
+    }));
+    builder.addCase(getReservations.rejected, (state) => ({
       ...state,
       isLoading: false,
     }));
