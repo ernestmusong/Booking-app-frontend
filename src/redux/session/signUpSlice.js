@@ -1,7 +1,7 @@
 const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
-const urlSignUp = 'http://localhost:3000/users';
-// const urlLogout = 'http://localhost:3000/users/sign_out';
+const urlSignUp = 'https://booking-app-api-lmvm.onrender.com/users';
+// const urlSignUp = 'http://localhost3000/users/'; //turn on this comment to test in local backend repo and off the above
 
 export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', async (users) => {
   const response = await fetch(urlSignUp, {

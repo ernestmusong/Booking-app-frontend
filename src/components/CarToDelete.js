@@ -10,7 +10,9 @@ const CarToDelete = ({ car }) => {
   const isAdmin = user?.role === 1;
   let text = 'Delete';
   const handleDelete = async (id) => {
-    const url = `http://localhost:3000/api/cars/${id}`;
+    const url = `https://booking-app-api-lmvm.onrender.com/api/cars/${id}`;
+    // const url = `http://localhost3000/api/cars/${id}`;//turn on this comment to test in local backend repo and off the above
+
     const authToken = localStorage.getItem('authToken');
     try {
       const response = await fetch(url, {
@@ -25,7 +27,6 @@ const CarToDelete = ({ car }) => {
       if (data.msg === 'Car deleted successfully') {
         return 'Removed!';
       }
-      console.log(data);
       text = data;
       return data;
     } catch (error) {

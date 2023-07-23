@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const url = 'http://localhost:3000/api/cars/';
+const url = 'https://booking-app-api-lmvm.onrender.com/api/cars/';
+// const url = 'http://localhost3000/api/cars/'; //turn on this comment to test in local backend repo and off the above
 
 export const postCars = createAsyncThunk('fromSlice/postCars', async (car) => {
   const authToken = localStorage.getItem('authToken');
