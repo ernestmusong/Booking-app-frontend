@@ -4,7 +4,6 @@ const baseUrl = 'http://localhost:3000/api/';
 
 export const postReservation = createAsyncThunk('car/reservations', async (reserve) => {
   const authToken = localStorage.getItem('authToken');
-  console.log(reserve);
   const response = await fetch(`${baseUrl}users/${reserve.id}/reservations`, {
     method: 'POST',
     headers: {
@@ -41,6 +40,22 @@ export const getReservations = createAsyncThunk(
     return data;
   },
 );
+
+export const cancelReservations = createAsyncThunk('reservations/cancel', async (id) => {
+  const authToken = localStorage.getItem('authToken');
+  const user = JSON.parse(localStorage.getItem('user'));
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${authToken}`,
+    },
+  };
+
+  const resp = await fetch(`${baseUrl}users/${user.id}/reservations/${id}`, requestOptions);
+  const data = await resp.json();
+  return data;
+});
 
 const initialState = {
   reserve: [],

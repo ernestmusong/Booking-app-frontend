@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReservation } from 'redux/reservations/carReserve';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ReservationForm = () => {
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
   const [city, setCity] = useState('');
   const [reservationDate, setReservationDate] = useState('');
   const [returningDate, setReturningDate] = useState('');
   const [carId, setCarId] = useState('');
-  const [error] = useState('');
+  const [error, setError] = useState('');
   const cities = [
     'New York',
     'Los Angeles',
@@ -26,15 +27,28 @@ const ReservationForm = () => {
   ];
   const handleReservation = async (event) => {
     event.preventDefault();
+    const today = new Date();
+    const selectedReservationDate = new Date(reservationDate);
+    if (selectedReservationDate < today) {
+      setError('Reservation date cannot be in the past.');
+      return;
+    }
+    const selectedReturningDate = new Date(returningDate);
+    if (selectedReturningDate <= today || selectedReturningDate <= selectedReservationDate) {
+      setError('Returning date must be in the future and after the reservation date.');
+      return;
+    }
+    setError('');
     await dispatch(postReservation({
       id: user.id, carId, city, reservationDate, returningDate,
     }));
+    navigate('/my-reservations');
   };
   return (
     <div className="form-wrap">
       <h3>Reserve A Car</h3>
       <form onSubmit={handleReservation}>
-        {error && <p>{error}</p>}
+        {error && <small className="fs-5, text-danger">{error}</small>}
         <label htmlFor="name" className="form-label">
           Your Name
           <input type="text" id="name" value={user.name} className="form-control" />

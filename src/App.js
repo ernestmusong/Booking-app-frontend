@@ -16,7 +16,6 @@ import { getCars } from 'redux/cars/carsSlice';
 import { useEffect } from 'react';
 import Delete from 'components/Delete';
 import WelcomePage from 'components/WelcomePage';
-import { getReservations } from 'redux/reservations/carReserve';
 
 const App = () => {
   const location = useLocation();
@@ -27,7 +26,6 @@ const App = () => {
   useEffect(() => {
     if (!isLoginPage && !isSignUpPage && !isRootPage) {
       dispatch(getCars('CARS'));
-      dispatch(getReservations());
     }
   }, [dispatch, isLoginPage, isSignUpPage, isRootPage]);
   return (
