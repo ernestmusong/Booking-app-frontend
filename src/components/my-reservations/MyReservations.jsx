@@ -4,10 +4,27 @@ import { Link } from 'react-router-dom';
 import CarCard from './CarCard';
 
 const MyReservations = () => {
-  const { cars } = useSelector((store) => store.cars);
-  const reserveCars = cars.filter((car) => car.reserved);
-  const reserveCarsComponents = reserveCars.map((car) => <CarCard car={car} key={car.id} />);
-  if (!reserveCars.length) {
+  const { cars: { cars }, reservation: { reserve } } = useSelector((store) => store);
+  const carData = reserve.map((res) => {
+    const reserveCars = cars.find((car) => car.id === res.id);
+    if (reserveCars) {
+      return {
+        ...reserveCars,
+        reservationDate: res.reservation_date,
+        returningDate: res.returning_date,
+        city: res.city,
+      };
+    }
+    return reserveCars || [];
+  });
+  const reserveComponents = carData.map((car) => (
+    <CarCard
+      car={car}
+      reservation={reserve}
+      key={car.id}
+    />
+  ));
+  if (!carData.length) {
     return (
       <div className="card w-50 m-auto mt-5">
         <div className="card-body">
@@ -31,7 +48,7 @@ const MyReservations = () => {
         Your Reservations
       </h3>
       <div className="row row-cols-1 row-cols-md-2 g-4 w-75 ms-auto me-5 mt-5">
-        {reserveCarsComponents}
+        {reserveComponents}
       </div>
     </div>
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CarCard = ({ car: { name, image, description } }) => (
+const CarCard = ({
+  car: {
+    name, image, description, reservationDate, returningDate, city,
+  },
+}) => (
   <div className="col">
     <div className="card">
       <img src={image} className="card-img-top" height="200px" width="100%" alt="..." />
@@ -10,9 +14,18 @@ const CarCard = ({ car: { name, image, description } }) => (
         <p className="card-text">{description}</p>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item">reservations date</li>
-        <li className="list-group-item">returning date</li>
-        <li className="list-group-item">city of reservations</li>
+        <li className="list-group-item">
+          reservations date:
+          {reservationDate}
+        </li>
+        <li className="list-group-item">
+          returning date:
+          {returningDate}
+        </li>
+        <li className="list-group-item">
+          city of reservations:
+          {city}
+        </li>
       </ul>
       <div className="card-footer bg-secondary">
         <span className="badge bg-light text-dark">Cancel Reservations</span>
