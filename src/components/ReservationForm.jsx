@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReservation } from 'redux/reservations/carReserve';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ReservationForm = () => {
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
-  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
   const [city, setCity] = useState('');
@@ -42,7 +41,6 @@ const ReservationForm = () => {
     await dispatch(postReservation({
       id: user.id, carId, city, reservationDate, returningDate,
     }));
-    navigate('/my-reservations');
   };
   return (
     <div className="form-wrap">
