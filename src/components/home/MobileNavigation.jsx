@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaAlignJustify, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/Frame.png';
 import '../../styles/MobileNavigation.css';
@@ -12,6 +12,13 @@ function MobileNavigation() {
     { path: '/add-car', text: 'Add car' },
     { path: '/delete', text: 'Delete car' },
   ];
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   const [height, setHeight] = useState(0);
   const [overFlow, setOverFlow] = useState('hidden');
@@ -70,6 +77,7 @@ function MobileNavigation() {
               </NavLink>
             ))}
           </div>
+          <button className="btn" type="button" onClick={() => logout()}>Log out</button>
         </div>
       </div>
     </nav>

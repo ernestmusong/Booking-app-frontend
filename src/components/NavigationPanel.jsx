@@ -62,7 +62,7 @@ const NavigationPanel = () => {
             </p>
           </div>
         </footer>
-        <button type="button" onClick={() => logout()}>Log out</button>
+        <button type="button" className="btn" onClick={() => logout()}>Log out</button>
       </div>
       <MobileNavigation />
     </>
