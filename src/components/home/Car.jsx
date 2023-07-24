@@ -37,7 +37,7 @@ const Car = ({ item }) => {
       </div>
     </article>
   );
-}
+};
 
 Car.propTypes = {
   item: PropTypes.oneOfType([PropTypes.object]).isRequired,

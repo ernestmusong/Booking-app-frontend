@@ -13,6 +13,6 @@ const DetailsContainer = () => {
       ;
     </main>
   );
-}
+};
 
 export default DetailsContainer;

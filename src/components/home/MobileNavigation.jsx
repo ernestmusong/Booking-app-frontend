@@ -82,6 +82,6 @@ const MobileNavigation = () => {
       </div>
     </nav>
   );
-}
+};
 
 export default MobileNavigation;
