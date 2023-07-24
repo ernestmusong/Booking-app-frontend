@@ -4,7 +4,7 @@ import { FaAlignJustify, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/Frame.png';
 import '../../styles/MobileNavigation.css';
 
-function MobileNavigation() {
+const MobileNavigation = () => {
   const links = [
     { path: '/home', text: 'Cars' },
     { path: '/make-reservations', text: 'Reserve a car', id: 'border' },

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/Welcome.css';
 
-function WelcomePage() {
+const WelcomePage = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   return (
     <div id="splash_screen">

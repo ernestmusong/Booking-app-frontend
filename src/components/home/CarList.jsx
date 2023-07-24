@@ -4,7 +4,7 @@ import { ProgressBar } from 'react-loader-spinner';
 import Car from './Car';
 import Title from './Tittle';
 
-function CarList() {
+const CarList = () => {
   const { cars, isLoading, error } = useSelector((store) => store.cars);
   if (isLoading) {
     return (

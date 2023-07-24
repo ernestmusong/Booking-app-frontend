@@ -1,7 +1,7 @@
 import React from 'react';
 import CarList from './CarList';
 
-function Home() {
+const Home = () => {
   return (
     <>
       <CarList />

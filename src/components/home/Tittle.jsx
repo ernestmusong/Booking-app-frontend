@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function Title({ title, subTitle }) {
+ const Title = ({ title, subTitle }) => {
   return (
     <>
       <h1 className="text-uppercase font-weight-bold text-center ">{title}</h1>
@@ -13,3 +13,5 @@ Title.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
 };
+
+export default Title;
