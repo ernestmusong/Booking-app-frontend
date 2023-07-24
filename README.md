@@ -1,17 +1,11 @@
-<a name="readme-top"></a>
-<!-- TABLE OF CONTENTS -->
-<div align = "center">
-  <img src="./personal-branding/app-logo.png" alt="logo" width="140"  height="auto" />
-</div>
-
 # 📗 Table of Contents
 - [App Mock](#app-mock)
 - [📖 About the Project](#about-project)
-- [📖 About the Associated Project](#about-project-associated)
   - [🧪 Linters](#linters)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -86,12 +80,16 @@ In this project we utilize our skills and knowledge to create this project
 
 ### Key Features <a name="key-features"></a>
 
-- **log in**
-- **Sign in**
-- **Responsive**
-- **Get Cars**
-- **Reserve Cars**
-- **Cancel Reservation**
+- *log in*
+- *Sign in*
+- *Responsive*
+- *Get Cars*
+- *Reserve Cars*
+- *Cancel Reservation*
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live demo ⚒️🏋️](https://booking-app-frontend-0qon.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -126,7 +124,7 @@ for cloning follow this steps
 - or just download `ZIP` file
 - Create `.env` file in root directory and add this line there `port=8000` 
 
-**Note** for [backend repo](https://github.com/enis-memic/booking_app_api) follow there prerequisites
+*Note* for [backend repo](https://github.com/enis-memic/booking_app_api) follow there prerequisites
 ### Install
 
 Install this project with:
@@ -134,33 +132,17 @@ Install this project with:
 for now you don't need any installation to run project if you already followed [Prerequisites](#prerequisites)
 
 just few dependency packages 
-```
+
 npm install
-```
+
 
 ### Usage
 
 To run the project, execute the following command:
 
-```
+
 npm start // to start development server
 npm run build // to build for productions
-```
-
-### Run tests
-
-To run tests, run the following command:
-
-
-```
-npm test
-```
-
-And for Linters
-
-`npx eslint "**/*.{js,jsx}"` for `js` or `jsx` file linting
-`npx stylelint "**/*.{css,scss}"` for CSS or SASS file linting 
-`--fix` for auto fixing respectively 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -169,25 +151,25 @@ And for Linters
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Adarsh Pathak**
+👤 *Adarsh Pathak*
 
 - GitHub: [@PowerLevel9000](https://github.com/PowerLevel9000)
 - Twitter: [@PowerLevel9002](https://twitter.com/PowerLevel9002)
 - LinkedIn: [Adarsh pathak](https://linkedin.com/in/PowerLevel)
 - GitUp Page: [Portfolio Page](https://powerlevel9000.github.io/portfolio-project/)
 
-👤 **Enis Memic**
+👤 *Enis Memic*
 
 - GitHub: [@enis-memic](https://github.com/enis-memic)
 - LinkedIn: [enis-memic](https://linkedin.com/in/enis-memic)
 
-👤 **Habtamu Birru**
+👤 *Habtamu Birru*
 
 - GitHub: [@Habtamu210](https://github.com/Habtamu210)
 - Twitter: [@beleyaha](https://twitter.com/beleyaha)
 - LinkedIn: [@habtamu-](https://www.linkedin.com/in/habtamu-birru/)
 
-👤 **Musong Ernest**
+👤 *Musong Ernest*
 
 - GitHub: [@ernestmusong](https://github.com/ernestmusong)
 - Twitter: [@MusongAkeh](https://twitter.com/MusongAkeh)
@@ -195,18 +177,11 @@ And for Linters
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 🚀 Presentation for Project <a name="video-presentation-for-our-project"></a>
-
-[Live link ⚒️🏋️](https://booking-app-frontend-0qon.onrender.com/)
-
-[presentation-video 🎥](https://www.loom.com/share/b04c3ad59dfe48dd815ec3fea429811a?sid=650fc5a1-3032-4d22-83bd-eb8d468a72c5)
-
-<!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Styling of various webpage**
-- [ ] **Better login and authorization**
+- [ ] *Styling of various webpage*
+- [ ] *Better login and authorization*
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
