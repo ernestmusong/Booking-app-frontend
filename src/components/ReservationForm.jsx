@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReservation } from 'redux/reservations/carReserve';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const user = JSON.parse(localStorage.getItem('user'));
 const ReservationForm = () => {
+  const navigate = useNavigate();
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
+  const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
   const [city, setCity] = useState('');
   const [reservationDate, setReservationDate] = useState('');
   const [returningDate, setReturningDate] = useState('');
-  const [carId, setCarId] = useState('');
+  const [carId, setCarId] = useState(carSelected ? carSelected.id : '');
   const [error, setError] = useState('');
   const cities = [
     'New York',
@@ -26,31 +27,41 @@ const ReservationForm = () => {
   ];
   const handleReservation = async (event) => {
     event.preventDefault();
-    try {
-      dispatch(postReservation({
-        carId, city, reservationDate, returningDate,
-      }));
-    } catch (error) {
-      setError(error.message);
+    const today = new Date();
+    const selectedReservationDate = new Date(reservationDate);
+    if (selectedReservationDate < today) {
+      setError('Reservation date cannot be in the past.');
+      return;
     }
+    const selectedReturningDate = new Date(returningDate);
+    if (selectedReturningDate <= today || selectedReturningDate <= selectedReservationDate) {
+      setError('Returning date must be in the future and after the reservation date.');
+      return;
+    }
+    setError('');
+    await dispatch(postReservation({
+      id: user.id, carId, city, reservationDate, returningDate,
+    }));
+    navigate('/my-reservations');
   };
   return (
     <div className="form-wrap">
       <h3>Reserve A Car</h3>
       <form onSubmit={handleReservation}>
-        {error && <p>{error}</p>}
+        {error && <small className="fs-5, text-danger">{error}</small>}
         <label htmlFor="name" className="form-label">
+          Your Name
           <input type="text" id="name" value={user.name} className="form-control" />
         </label>
         <label className="form-label" htmlFor="city">
-          Enter your city
+          Select your city
           <select
             className="form-control"
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           >
-            <option value="">Select a Car</option>
+            <option value="">city of reservation</option>
             {cities.map((city) => (
               <option key={city} value={city}>
                 {city}
@@ -83,10 +94,10 @@ const ReservationForm = () => {
           <select
             className="form-control"
             id="car"
-            value={!carSelected ? carSelected.id : carId}
+            value={carId}
             onChange={(e) => setCarId(e.target.value)}
           >
-            <option value={!carSelected ? '' : carSelected.name}>Select a Car</option>
+            {!carSelected ? <option value="">Select a car</option> : <option value={carSelected.id}>{carSelected.name}</option>}
             {cars.map((car) => (
               <option key={car.id} value={car.id}>
                 {car.name}
@@ -99,7 +110,7 @@ const ReservationForm = () => {
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
             {isLoading ? 'reservation...' : 'reserve'}
           </button>
-          <Link to="/cars" className="btn btn-secondary">See Cars</Link>
+          <Link to="/my-reservations" className="btn btn-secondary">Reservations</Link>
         </div>
       </form>
     </div>

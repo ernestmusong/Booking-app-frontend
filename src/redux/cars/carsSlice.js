@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const url = 'http://localhost:3000/api/cars';
+const baseUrl = 'https://booking-app-api-lmvm.onrender.com/api/';
+// const baseUrl = 'http://localhost3000/api/'; //turn on this comment to test in local backend repo and off the above
 
 export const getCars = createAsyncThunk(
   'cars/getCars',
@@ -14,7 +15,7 @@ export const getCars = createAsyncThunk(
       },
     };
 
-    const resp = await fetch(url, requestOptions);
+    const resp = await fetch(`${baseUrl}cars`, requestOptions);
     const data = await resp.json();
     return data;
   },
@@ -45,6 +46,14 @@ export const carsSlice = createSlice({
         carSelected,
       };
     },
+
+    carRemove: (state, { payload }) => {
+      const carFiltered = state.cars.filter((car) => car.id !== payload);
+      return {
+        ...state,
+        cars: carFiltered,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,5 +75,5 @@ export const carsSlice = createSlice({
   },
 });
 
-export const { selectCar } = carsSlice.actions;
+export const { selectCar, carRemove } = carsSlice.actions;
 export default carsSlice.reducer;

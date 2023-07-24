@@ -1,6 +1,7 @@
 const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
-const urlLogin = 'http://localhost:3000/users/sign_in';
+const urlLogin = 'https://booking-app-api-lmvm.onrender.com/users/sign_in';
+// const urlLogin = 'http://localhost3000/users/sign_in/'; //turn on this comment to test in local backend repo and off the above
 
 export const login = createAsyncThunk('session/login', async (users) => {
   try {
@@ -31,9 +32,6 @@ export const login = createAsyncThunk('session/login', async (users) => {
     const data = await response.json();
     const authToken = response.headers.get('Authorization');
     const user = data.status.data;
-    console.log(data.status.data);
-    console.log(authToken);
-    console.log(authToken);
     if (authToken) {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('authToken', authToken);

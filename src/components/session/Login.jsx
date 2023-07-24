@@ -23,12 +23,12 @@ const Login = () => {
       }
     });
     setAlert(null);
-    console.log(message);
   };
 
   return (
     <div className="form-wrap">
       {alert && <small className="text-alert fs-5">{alert}</small>}
+      {alert && <small className="text-alert fs-5">{message}</small>}
       <h3>Log in</h3>
       <form onSubmit={handleLogin}>
         <label htmlFor="email" className="form-label">

@@ -129,6 +129,10 @@ footer {
   z-index: 999;
 }
 
+.classes-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .classes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -203,5 +207,9 @@ footer {
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 999;
+  }
+
+  .classes {
+    padding: 1rem;
   }
 }

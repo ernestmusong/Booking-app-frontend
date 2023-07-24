@@ -1,11 +1,14 @@
 .form-wrap {
   min-height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  background-color: #f2f2f2; /* Fallback color */
+  background-color: #f2f2f2;
+
+  /* Fallback color */
   background-image: linear-gradient(45deg, rgba(50, 205, 50, 0.5) 0%, rgba(240, 240, 240, 0.5) 100%);
   background-size: 200% 200%;
   animation: gradientAnimation 10s ease infinite;
@@ -52,4 +55,31 @@ form label {
 
 form input {
   margin: 0.3rem 0;
+}
+
+@media screen and (max-width: 426px) {
+  .form-wrap {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    padding: 2rem 0;
+    margin-bottom: 0;
+  }
+
+  .form-wrap h3 {
+    font-size: 2.5rem;
+  }
+
+  form {
+    width: 95% !important;
+    padding: 2rem 1rem;
+  }
+
+  .no-reserve {
+    width: 95% !important;
+  }
+
+  .table-container {
+    width: 95% !important;
+    overflow: scroll;
+  }
 }

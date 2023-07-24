@@ -8,10 +8,15 @@ import { TfiGoogle } from 'react-icons/tfi';
 import logo from '../assets/Frame.png';
 import MobileNavigation from './home/MobileNavigation';
 
+const user = JSON.parse(localStorage.getItem('user'));
+const isAdmin = user?.role === 1;
+
 const links = [
   { path: '/home', text: 'Cars' },
   { path: '/make-reservations', text: 'Reserve a car', id: 'border' },
   { path: '/my-reservations', text: 'My reservations' },
+];
+const adminLinks = [
   { path: '/add-car', text: 'Add car' },
   { path: '/delete-car', text: 'Delete car' },
 ];
@@ -42,6 +47,21 @@ const NavigationPanel = () => {
                 </NavLink>
               </li>
             ))}
+            {isAdmin && (
+              <ul>
+                {adminLinks.map((link) => (
+                  <li key={link.text}>
+                    <NavLink
+                      to={link.path}
+                      className={({ isActive }) => (isActive ? 'active' : 'normal')}
+                      id={link.id}
+                    >
+                      {link.text}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
           </ul>
         </nav>
         <footer>
@@ -62,7 +82,7 @@ const NavigationPanel = () => {
             </p>
           </div>
         </footer>
-        <button type="button" onClick={() => logout()}>Log out</button>
+        <button type="button" className="btn" onClick={() => logout()}>Log out</button>
       </div>
       <MobileNavigation />
     </>
