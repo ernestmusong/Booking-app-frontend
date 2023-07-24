@@ -6,7 +6,6 @@ import Title from './Tittle';
 
 function CarList() {
   const { cars, isLoading, error } = useSelector((store) => store.cars);
-
   if (isLoading) {
     return (
       <div className="loading">

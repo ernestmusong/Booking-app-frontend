@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import carsReducer from './cars/carsSlice';
-import sessionReducer from './session/sessionSlice';
+import loginReducer from './session/loginSlice';
+import signUpReducer from './session/signUpSlice';
 import carFormReducer from './formSlice/carSlice';
-
 import reservationReducer from './reservations/carReserve';
 
 const store = configureStore({
   reducer: {
-    session: sessionReducer,
+    login: loginReducer,
+    signUp: signUpReducer,
     cars: carsReducer,
     reservation: reservationReducer,
     carForm: carFormReducer,

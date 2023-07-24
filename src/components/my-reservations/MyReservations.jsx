@@ -1,15 +1,38 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getReservations } from 'redux/reservations/carReserve';
 import CarCard from './CarCard';
 
 const MyReservations = () => {
-  const { cars } = useSelector((store) => store.cars);
-  const reserveCars = cars.filter((car) => car.reserved);
-  const reserveCarsComponents = reserveCars.map((car) => <CarCard car={car} key={car.id} />);
-  if (!reserveCars.length) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getReservations());
+  }, [dispatch]);
+  const { cars: { cars }, reservation: { reserve } } = useSelector((store) => store);
+  const carData = reserve.map((res) => {
+    const reserveCars = cars.find((car) => car.id === res.car_id);
+    if (reserveCars) {
+      return {
+        ...reserveCars,
+        resId: res.id,
+        reservationDate: res.reservation_date,
+        returningDate: res.returning_date,
+        city: res.city,
+      };
+    }
+    return reserveCars || [];
+  });
+  const reserveComponents = carData.map((car) => (
+    <CarCard
+      car={car}
+      reservation={reserve}
+      key={car.id}
+    />
+  ));
+  if (!carData.length) {
     return (
-      <div className="card w-50 m-auto mt-5">
+      <div className="card w-50 no-reserve m-auto mt-5">
         <div className="card-body">
           <h5 className="card-title">No Reservations At The Moment</h5>
           <p className="card-text">Please make Reservations by Feeling Form</p>
@@ -31,7 +54,7 @@ const MyReservations = () => {
         Your Reservations
       </h3>
       <div className="row row-cols-1 row-cols-md-2 g-4 w-75 ms-auto me-5 mt-5">
-        {reserveCarsComponents}
+        {reserveComponents}
       </div>
     </div>
 

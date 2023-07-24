@@ -1,21 +1,7 @@
 const { createAsyncThunk, createSlice } = require('@reduxjs/toolkit');
 
-const urlSignUp = 'https://localhost:3000/users';
-const urlLogin = 'https://localhost:3000/users/sign_in';
-
-export const login = createAsyncThunk('src/redux/session/sessionSlice"log"', async (user) => {
-  const response = await fetch(urlLogin, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: user.name,
-    }),
-  });
-  const data = await response.json();
-  return data;
-});
+const urlSignUp = 'https://booking-app-api-lmvm.onrender.com/users';
+// const urlSignUp = 'http://localhost3000/users/'; //turn on this comment to test in local backend repo and off the above
 
 export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', async (users) => {
   const response = await fetch(urlSignUp, {
@@ -36,24 +22,30 @@ export const signUp = createAsyncThunk('src/redux/session/sessionSlice/sign', as
 });
 
 const initialState = {
-  signUpData: '',
+  signUpData: null,
+  isSignIn: false,
   loading: false,
+  isAdmin: false,
 };
 
-const sessionSlice = createSlice({
-  name: 'session',
+const signUpSlice = createSlice({
+  name: 'sign up',
   initialState,
+
+  reducers: {
+
+  },
   extraReducers: (builder) => {
-    builder.addCase(login.pending, (state) => ({
+    builder.addCase(signUp.pending, (state) => ({
       ...state,
       loading: true,
     }));
-    builder.addCase(login.fulfilled, (state, { payload }) => ({
+    builder.addCase(signUp.fulfilled, (state, { payload }) => ({
       ...state,
       loading: false,
       signUpData: payload,
     }));
-    builder.addCase(login.rejected, (state, { payload }) => ({
+    builder.addCase(signUp.rejected, (state, { payload }) => ({
       ...state,
       loading: false,
       signUpData: payload,
@@ -61,5 +53,4 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { log } = sessionSlice.actions;
-export default sessionSlice.reducer;
+export default signUpSlice.reducer;

@@ -58,8 +58,14 @@ nav {
   text-decoration: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   #nav {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .links-container button {
+    margin: 1rem 0;
   }
 }

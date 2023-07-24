@@ -1,19 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-const client = axios.create({
-  baseURL: 'https://course-api.com',
-});
+const baseUrl = 'https://booking-app-api-lmvm.onrender.com/api/';
+// const baseUrl = 'http://localhost3000/api/'; //turn on this comment to test in local backend repo and off the above
 
 export const getCars = createAsyncThunk(
   'cars/getCars',
-  async (name, thunkAPI) => {
-    try {
-      const resp = await client.get('/javascript-store-products');
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('something went wrong');
-    }
+  async () => {
+    const authToken = localStorage.getItem('authToken');
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${authToken}`,
+      },
+    };
+
+    const resp = await fetch(`${baseUrl}cars`, requestOptions);
+    const data = await resp.json();
+    return data;
   },
 );
 
@@ -42,6 +46,14 @@ export const carsSlice = createSlice({
         carSelected,
       };
     },
+
+    carRemove: (state, { payload }) => {
+      const carFiltered = state.cars.filter((car) => car.id !== payload);
+      return {
+        ...state,
+        cars: carFiltered,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,5 +75,5 @@ export const carsSlice = createSlice({
   },
 });
 
-export const { selectCar } = carsSlice.actions;
+export const { selectCar, carRemove } = carsSlice.actions;
 export default carsSlice.reducer;
