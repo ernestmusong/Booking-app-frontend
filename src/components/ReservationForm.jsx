@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postReservation } from 'redux/reservations/carReserve';
 import { Link } from 'react-router-dom';
 
+const user = JSON.parse(localStorage.getItem('user'));
 const ReservationForm = () => {
   const { reservation: { isLoading }, cars: { cars, carSelected } } = useSelector((store) => store);
   const dispatch = useDispatch();
@@ -26,8 +27,8 @@ const ReservationForm = () => {
   const handleReservation = async (event) => {
     event.preventDefault();
     try {
-      await dispatch(postReservation({
-        id: 2, carId, city, reservationDate, returningDate,
+      dispatch(postReservation({
+        carId, city, reservationDate, returningDate,
       }));
     } catch (error) {
       setError(error.message);
@@ -39,7 +40,7 @@ const ReservationForm = () => {
       <form onSubmit={handleReservation}>
         {error && <p>{error}</p>}
         <label htmlFor="name" className="form-label">
-          <input type="text" id="name" value="user.name" className="form-control" />
+          <input type="text" id="name" value={user.name} className="form-control" />
         </label>
         <label className="form-label" htmlFor="city">
           Enter your city
@@ -82,7 +83,7 @@ const ReservationForm = () => {
           <select
             className="form-control"
             id="car"
-            value={!carSelected ? carId : carSelected.id}
+            value={!carSelected ? carSelected.id : carId}
             onChange={(e) => setCarId(e.target.value)}
           >
             <option value={!carSelected ? '' : carSelected.name}>Select a Car</option>

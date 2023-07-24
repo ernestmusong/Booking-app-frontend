@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const baseURL = 'http://localhost:3000/api/';
-
+const user = JSON.parse(localStorage.getItem('user'));
+const userId = user.id;
 export const postReservation = createAsyncThunk('car/reservations', async (reserve) => {
   const authToken = localStorage.getItem('authToken');
-  const response = await fetch(`${baseURL}users/${reserve.id}/reservations`, {
+  const response = await fetch(`${baseURL}users/${userId}/reservations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ export const postReservation = createAsyncThunk('car/reservations', async (reser
 });
 
 const initialState = {
-  data: null,
+  data: {},
   isLoading: false,
 };
 
