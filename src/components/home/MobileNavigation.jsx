@@ -10,7 +10,7 @@ function MobileNavigation() {
     { path: '/make-reservations', text: 'Reserve a car', id: 'border' },
     { path: '/my-reservations', text: 'My reservations' },
     { path: '/add-car', text: 'Add car' },
-    { path: '/delete', text: 'Delete car' },
+    { path: '/delete-car', text: 'Delete car' },
   ];
 
   const navigate = useNavigate();

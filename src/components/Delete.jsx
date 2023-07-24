@@ -12,7 +12,7 @@ const Delete = () => {
   }
 
   return (
-    <div className="container-fluid d-flex align-items-center gap-5 flex-column mt-5">
+    <div className="container-fluid d-flex table-container align-items-center gap-5 flex-column mt-5">
       <h3 className="fs-1">Available Cars</h3>
       <table className="table w-50 table-striped table-hover border rounded-3 p-5 mb-5">
         <thead>

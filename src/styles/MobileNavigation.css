@@ -63,3 +63,9 @@ nav {
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .links-container button {
+    margin: 1rem 0;
+  }
+}

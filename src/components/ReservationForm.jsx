@@ -54,14 +54,14 @@ const ReservationForm = () => {
           <input type="text" id="name" value={user.name} className="form-control" />
         </label>
         <label className="form-label" htmlFor="city">
-          Enter your city
+          Select your city
           <select
             className="form-control"
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           >
-            <option value="">Select a Car</option>
+            <option value="">city of reservation</option>
             {cities.map((city) => (
               <option key={city} value={city}>
                 {city}

@@ -32,7 +32,7 @@ const MyReservations = () => {
   ));
   if (!carData.length) {
     return (
-      <div className="card w-50 m-auto mt-5">
+      <div className="card w-50 no-reserve m-auto mt-5">
         <div className="card-body">
           <h5 className="card-title">No Reservations At The Moment</h5>
           <p className="card-text">Please make Reservations by Feeling Form</p>

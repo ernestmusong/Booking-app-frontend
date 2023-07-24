@@ -37,8 +37,8 @@ const CarCard = ({
         <div className="card-footer bg-secondary">
           <button
             type="button"
-            onClick={() => {
-              dispatch(cancelReservations(resId));
+            onClick={async () => {
+              await dispatch(cancelReservations(resId));
               window.location.reload();
             }}
             className="badge bg-light text-dark"
