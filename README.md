@@ -99,6 +99,10 @@ Currently, the live version of the app is not available. However, you can still 
 ## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
+### Note => If you are Checking on the Local server please comment out the live server base URL and Uncomment the localhost URL in respective sliceFolders of [redux](./src/redux)
+example line 
+![image](https://github.com/ernestmusong/Booking-app-frontend/assets/116451144/d29238a2-13e0-43c3-a595-5e4cfbdf4bfc)
+
 
 ### Prerequisites
 
